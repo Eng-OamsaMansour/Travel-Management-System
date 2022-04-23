@@ -9,6 +9,16 @@ private int age;
 private int phonenum;
 
 public person(){
+
+}
+
+public person(String NAME, int I, int AGE, int PHONENUM){
+
+	name=NAME;
+	ID=I;
+	age=AGE;
+	phonenum=PHONENUM;
+
 }
 
 public void set_name(String n) {

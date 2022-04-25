@@ -1,23 +1,21 @@
-
+package TMSpack;
 import javax.swing.*;
 
 
 public class person {
 private String name;
-private int ID;
-private int age;
-private int phonenum;
+private String ID;
+private String age;
+private String phonenum;
 
-public person(){
 
-}
 
-public person(String NAME, int I, int AGE, int PHONENUM){
+public person(String name, String ID, String age, String phonenum){
 
-	name=NAME;
-	ID=I;
-	age=AGE;
-	phonenum=PHONENUM;
+	this.name=name;
+	this.ID=ID;
+	this.age=age;
+	this.phonenum=phonenum;
 
 }
 

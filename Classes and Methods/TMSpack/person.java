@@ -7,6 +7,12 @@ private String name;
 private String ID;
 private String age;
 private String phonenum;
+private String username;
+private String password;
+
+public person(){
+
+}
 
 
 
@@ -17,6 +23,21 @@ public person(String name, String ID, String age, String phonenum){
 	this.age=age;
 	this.phonenum=phonenum;
 
+}
+
+public String getUsername() {
+	return username;
+}
+public void setUsername (String username) {
+	this.username = username;
+
+}
+
+public String getPassword() {
+	return password;
+}
+public void setPassword (String password) {
+	this.password = password;
 }
 
 public void set_name(String n) {

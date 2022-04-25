@@ -27,30 +27,30 @@ public String get_name() {
 	return name;
 }
 
-public void set_ID(int id) {
-	int dig = String.valueOf(id).length();  // to check the number of digits in ID number 
+public void set_ID(String id) {
+	int dig = id.length();  // to check the number of digits in ID number 
 	if(dig==10)
 	ID=id;
 	else
 		JOptionPane.showMessageDialog(null, " Your ID number is UNCORRECT, Please enter your information again !! ");
 }
 
-public int get_ID() {
+public String get_ID() {
 	return ID;
 }
 
-public void set_age(int a) {
+public void set_age(String a) {
 	if (a>=18)	
 	age=a;
 	else 
 		JOptionPane.showMessageDialog(null, " Your AGE is UNDER 18 , Please enter your information again !! ");	
 }
 
-public int get_age() {
+public String get_age() {
 	return age;
 }
 
-public void set_phonenum(int num) {
+public void set_phonenum(String num) {
 	int N = String.valueOf(num).length(); // to check the number of digits in phone number 
 	if(N==5)
 	phonenum=num;
@@ -58,7 +58,7 @@ public void set_phonenum(int num) {
 		JOptionPane.showMessageDialog(null, " Your PHONE NUMBER is less than 10 digit , Please enter your information again !! ");
 }
 
-public int get_phonenum() {
+public String get_phonenum() {
 	return phonenum;
 }
 

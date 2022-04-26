@@ -1,7 +1,9 @@
 package Classes and Methods.TMSpack;
 
 import javax.swing.*;
-public class user {
+
+import TMSpack.person;
+public class user extends person {
 
 	private String userID;
 

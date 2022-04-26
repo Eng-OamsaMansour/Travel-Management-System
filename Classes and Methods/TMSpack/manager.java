@@ -1,30 +1,32 @@
 package Classes and Methods.TMSpack;
 
+import TMSpack.person;
+
 import javax.swing.*;
-public class receptionist extends person {
 
-	private String receptionistID;
+public class manager extends person{
+
+    private String managerID;
 
 
-    public void set_receptionistID(String id) {
+    public void set_managerID(String id) {
         int dig = id.length();
         if(dig==10)
-            receptionistID=id;
+            managerID=id;
         else
             JOptionPane.showMessageDialog(null, " Your ID number is UNCORRECT, Please enter your information again !! ");
     }
     
-    public String get_receptionistID() {
-        return receptionistID;
+    public String get_managerID() {
+        return managerID;
     }	
     
-    public void add_receptionist() {
+    public void add_manager() {
         
     }
     
-    public void delete_receptionist() {
+    public void delete_manager() {
         
     }
-    
     
 }

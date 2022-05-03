@@ -1,15 +1,6 @@
 
 import javax.swing.JOptionPane;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-
-/**
- *
- * @author Zahi
- */
 public class signup extends javax.swing.JFrame {
 
     /**
@@ -136,6 +127,8 @@ public class signup extends javax.swing.JFrame {
 
     private void signupActionPerformed(java.awt.event.ActionEvent evt) {                                       
         // TODO add your handling code here:
+        //function call
+        /*
          String pass=new String(jPasswordField1.getPassword());
         String n=new String(name.getText());
                 if((n.equals("")||pass.equals(""))||n.equals("Name"))
@@ -144,6 +137,7 @@ public class signup extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null,"Please make sure that you enterd password/username ","Unsccessful Login", JOptionPane.PLAIN_MESSAGE);
                 }
                 //else sign up function
+                */
                             
     }                                      
 

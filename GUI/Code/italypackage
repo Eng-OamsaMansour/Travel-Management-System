@@ -59,6 +59,7 @@ public class italy extends javax.swing.JFrame {
         jPanel2.add(jLabel2);
         jLabel2.setBounds(240, 0, 250, 250);
 
+        italy_textarea.setEditable(false);
         italy_textarea.setColumns(20);
         italy_textarea.setRows(5);
         italy_textarea.setText(" \n     Duration:4 days 3 night\n     Date: 7/6/2022\n");

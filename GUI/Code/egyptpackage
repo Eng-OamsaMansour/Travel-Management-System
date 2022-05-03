@@ -58,6 +58,7 @@ public class egypt extends javax.swing.JFrame {
         jPanel2.add(jLabel2);
         jLabel2.setBounds(280, 0, 280, 250);
 
+        egypt_textarea.setEditable(false);
         egypt_textarea.setColumns(20);
         egypt_textarea.setRows(5);
         jPanel2.add(egypt_textarea);

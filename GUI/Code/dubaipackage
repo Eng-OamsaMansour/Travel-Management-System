@@ -55,6 +55,7 @@ public class dubai extends javax.swing.JFrame {
 
         jPanel2.setLayout(null);
 
+        dubai_textarea.setEditable(false);
         dubai_textarea.setColumns(20);
         dubai_textarea.setRows(5);
         dubai_textarea.setText("\n    Duration: 5 days 4 Night\n    Date: 6/5/2022\n    Hotel:SITARA HOTEL APARTMENT \n    Trandportaion way:\n    Trip path Description:");

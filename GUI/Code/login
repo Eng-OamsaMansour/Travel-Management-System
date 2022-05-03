@@ -1,11 +1,4 @@
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 
-/**
- *
- * @author Zahi
- */
 public class login extends javax.swing.JFrame {
 
     /**
@@ -129,12 +122,13 @@ new start().setVisible(true);        // TODO add your handling code here:
     }                                       
 
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {                                      
-        // TODO add your handling code here:
+       
+         //login function call if the information is true do 
           new Firstpage().setVisible(true);
     }                                     
 
     private void forgetActionPerformed(java.awt.event.ActionEvent evt) {                                       
-        // TODO add your handling code here:
+        
         new forgetpassword().setVisible(true); 
     }                                      
     

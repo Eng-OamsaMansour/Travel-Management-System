@@ -140,4 +140,127 @@ public class Trip {
            System.out.print(ex.toString());
         }            
     }
+
+	public boolean Reservation(String trip_id, String user_id) {
+        boolean user_sucsses = false;
+        boolean trip_sucsses = false;
+        boolean can_add = false;
+        ArrayList<String> user_IDs = new ArrayList<String>();
+        ArrayList<String> Trip_IDs = new ArrayList<String>();
+        try {
+            OracleDataSource user_ods = new OracleDataSource();
+            user_ods.setURL("jdbc:oracle:thin:@localhost:1521:xe");
+            user_ods.setUser("c##TMS");
+            user_ods.setPassword("123456");
+            Connection con = user_ods.getConnection();
+            Statement stmt = con.createStatement();
+            ResultSet user_result = stmt.executeQuery("select * from PIRSON");
+            while (user_result.next()) {
+                user_IDs.add(user_result.getString(3));
+            }
+            con.close();
+            boolean user_found = false;
+            for (int i = 0; i < user_IDs.size(); i++) {
+
+                if (user_IDs.get(i).equals(user_id)) {
+
+                    user_sucsses = true;
+                    user_found = true;
+                    break;
+                }
+            }
+            if (user_found) {
+                user_sucsses = true;
+                OracleDataSource Trip_ods = new OracleDataSource();
+                Trip_ods.setURL("jdbc:oracle:thin:@localhost:1521:xe");
+                Trip_ods.setUser("c##TMS");
+                Trip_ods.setPassword("123456");
+                Connection Tcon = Trip_ods.getConnection();
+                Statement Tstmt = Tcon.createStatement();
+                ResultSet Trip_result = Tstmt.executeQuery("select * from TRIP");
+                while (Trip_result.next()) {
+                    Trip_IDs.add(Trip_result.getString(1));
+                }
+                Tcon.close();
+                boolean Trip_found = false;
+                for (int i = 0; i < Trip_IDs.size(); i++) {
+                    if (Trip_IDs.get(i).equals(trip_id)) {
+                        trip_sucsses = true;
+                        Trip_found = true;
+                        break;
+                    }
+                }
+                if (Trip_found) {
+                    OracleDataSource Current_Book_num_data_ds = new OracleDataSource();
+                    Current_Book_num_data_ds.setURL("jdbc:oracle:thin:@localhost:1521:xe");
+                    Current_Book_num_data_ds.setUser("c##TMS");
+                    Current_Book_num_data_ds.setPassword("123456");
+                    Connection book_num_data_con = Current_Book_num_data_ds.getConnection();
+                    Statement book_num_data_stmt = book_num_data_con.createStatement();
+                    ResultSet book_num_data_result = book_num_data_stmt.executeQuery("SELECT CURRENT_BOOKING_NUMBER FROM TRIP WHERE TRIP_ID = '"+trip_id+"'");
+                    book_num_data_result.next();
+                    OracleDataSource max_book_num_ds = new OracleDataSource();
+                    max_book_num_ds.setURL("jdbc:oracle:thin:@localhost:1521:xe");
+                    max_book_num_ds.setUser("c##TMS");
+                    max_book_num_ds.setPassword("123456");
+                    Connection max_book_num_con = max_book_num_ds.getConnection();
+                    Statement max_book_num_Statement = max_book_num_con.createStatement();
+                    ResultSet max_book_num_result = max_book_num_Statement.executeQuery("SELECT MAX_BOOKING_NUM FROM TRIP WHERE TRIP_ID = '"+trip_id+"'");
+                    max_book_num_result.next();
+                    if (max_book_num_result.getBigDecimal(1).intValue() > book_num_data_result.getBigDecimal(1).intValue()) {                     
+                        can_add = true;
+                    }
+                    max_book_num_con.close();
+                    max_book_num_con.close();
+                }
+            }
+        } catch (SQLException ex) {          
+            
+            Logger.getLogger(Trip.class.getName()).log(Level.SEVERE, null, ex);          
+        }
+        System.out.print(user_sucsses +"\n"
+                + trip_sucsses + "\n"
+                + can_add + "\n");
+
+        if (user_sucsses == true && trip_sucsses == true && can_add == true) {
+            Driver driver = new oracle.jdbc.driver.OracleDriver();
+            try {
+
+                OracleDataSource Current_Book_num_ds = new OracleDataSource();
+                Current_Book_num_ds.setURL("jdbc:oracle:thin:@localhost:1521:xe");
+                Current_Book_num_ds.setUser("c##TMS");
+                Current_Book_num_ds.setPassword("123456");
+                Connection book_num_con = Current_Book_num_ds.getConnection();
+                Statement book_num_stmt = book_num_con.createStatement();
+                ResultSet book_num_result = book_num_stmt.executeQuery("SELECT CURRENT_BOOKING_NUMBER FROM TRIP WHERE TRIP_ID = '"+trip_id+"' ");
+                book_num_result.next();
+                Driver book_num_driver = new oracle.jdbc.driver.OracleDriver();
+                DriverManager.registerDriver(book_num_driver);
+                String url1 = "jdbc:oracle:thin:@localhost:1521:xe";
+                Connection book_num_con2 = DriverManager.getConnection(url1, "c##TMS", "123456");
+                Statement stmt1 = book_num_con2.createStatement();
+                String strstm = "UPDATE TRIP SET CURRENT_BOOKING_NUMBER = " + book_num_result.getBigDecimal(1).add(BigDecimal.ONE) + " WHERE TRIP_ID = '"+trip_id+"' ";
+                stmt1.execute(strstm);
+                book_num_con2.setAutoCommit(false);
+                book_num_con2.commit();
+                book_num_con2.close();
+                book_num_con.close();
+                DriverManager.registerDriver(driver);
+                String url = "jdbc:oracle:thin:@localhost:1521:xe";
+                Connection con = DriverManager.getConnection(url, "c##TMS", "123456");
+                PreparedStatement stmt = con.prepareStatement("insert into BOOKTRIP values(?,?)");
+                stmt.setString(1, user_id);
+                stmt.setString(2, trip_id);
+                stmt.executeQuery();
+                con.setAutoCommit(false);
+                con.commit();
+                con.close();
+            } catch (SQLException ex) {                
+                Logger.getLogger(Trip.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

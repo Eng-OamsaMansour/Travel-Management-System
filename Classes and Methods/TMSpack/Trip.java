@@ -263,4 +263,22 @@ public class Trip {
             return false;
         }
     }
+
+	public void Delete_Trip(String ID) {
+        try {
+            OracleDataSource ods = new OracleDataSource();
+            ods.setURL("jdbc:oracle:thin:@localhost:1521:xe");
+            ods.setUser("c##TMS");
+            ods.setPassword("123456");
+            Connection con = ods.getConnection();
+            Statement stmt = con.createStatement();
+            stmt.executeQuery("DELETE FROM TRIP WHERE TRIP_ID ='" + ID + "'");
+            con.setAutoCommit(false);
+            con.commit();
+            con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(Trip.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
 }

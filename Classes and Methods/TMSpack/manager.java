@@ -16,14 +16,28 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import oracle.jdbc.pool.OracleDataSource;
-
 import java.util.*;
 
 public class manager extends person{
 
     private String managerID;
+    person p;
 
-
+    public manager(){
+        
+    }
+    
+    public manager(String Fname,String Lname, String ID, int age, String phonenum, String username, String password){
+        p.setFname(Fname);
+        p.setLname(Lname);
+        p.setGovID(ID);
+        p.setAge(age);
+        p.setPhonenum(phonenum);
+        p.setUsername(username);
+        p.setPassword(password);
+        
+    }
+    
     public void set_managerID(String id) {
             managerID=id;
     }
@@ -110,6 +124,7 @@ public void delete_manager(String id){
          con.commit();
          con.close();
     }
+
  catch (Exception e){
      JOptionPane.showMessageDialog(null, e.toString());
  }

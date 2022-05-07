@@ -314,6 +314,7 @@ ArrayList<String> ids= new ArrayList<String>();
     rowdata[j]=trip_kind.get(i);
     rowdata[j]=cur_booking.get(i);
                 
+    model.addRow(rowData);
     }
     }
 

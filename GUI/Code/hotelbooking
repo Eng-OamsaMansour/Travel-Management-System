@@ -17,14 +17,9 @@ public class Hotelbooking extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        hotellocation = new javax.swing.JLabel();
-        hotelstars = new javax.swing.JLabel();
-        hotelid = new javax.swing.JLabel();
-        hotelnamelabel = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         booking = new javax.swing.JButton();
-        room = new javax.swing.JTextField();
         datefrom = new javax.swing.JTextField();
         dateto = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
@@ -35,27 +30,17 @@ public class Hotelbooking extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        id = new javax.swing.JTextField();
+        name = new javax.swing.JTextField();
+        location = new javax.swing.JTextField();
+        stars = new javax.swing.JTextField();
+        room = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(null);
-
-        hotellocation.setText("jLabel10");
-        jPanel1.add(hotellocation);
-        hotellocation.setBounds(120, 460, 100, 16);
-
-        hotelstars.setText("jLabel11");
-        jPanel1.add(hotelstars);
-        hotelstars.setBounds(120, 490, 90, 16);
-
-        hotelid.setText("jLabel9");
-        jPanel1.add(hotelid);
-        hotelid.setBounds(120, 400, 100, 16);
-
-        hotelnamelabel.setText("jLabel15");
-        jPanel1.add(hotelnamelabel);
-        hotelnamelabel.setBounds(120, 430, 80, 16);
 
         jLabel7.setText("Hotel ID:");
         jPanel1.add(jLabel7);
@@ -74,16 +59,8 @@ public class Hotelbooking extends javax.swing.JFrame {
         });
         jPanel1.add(booking);
         booking.setBounds(490, 450, 77, 25);
-
-        room.setText("jTextField1");
-        jPanel1.add(room);
-        room.setBounds(110, 530, 110, 22);
-
-        datefrom.setText("jTextField2");
         jPanel1.add(datefrom);
         datefrom.setBounds(450, 410, 63, 22);
-
-        dateto.setText("jTextField3");
         jPanel1.add(dateto);
         dateto.setBounds(560, 410, 63, 22);
 
@@ -120,6 +97,33 @@ public class Hotelbooking extends javax.swing.JFrame {
         jPanel1.add(jLabel2);
         jLabel2.setBounds(20, 50, 730, 310);
 
+        jButton1.setText("Back");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1);
+        jButton1.setBounds(660, 540, 57, 25);
+
+        id.setEditable(false);
+        jPanel1.add(id);
+        id.setBounds(110, 400, 140, 22);
+
+        name.setEditable(false);
+        jPanel1.add(name);
+        name.setBounds(110, 430, 140, 22);
+
+        location.setEditable(false);
+        jPanel1.add(location);
+        location.setBounds(110, 460, 140, 22);
+
+        stars.setEditable(false);
+        jPanel1.add(stars);
+        stars.setBounds(110, 490, 140, 22);
+        jPanel1.add(room);
+        room.setBounds(110, 530, 140, 22);
+
         jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Zahi\\Music\\6.png")); // NOI18N
         jPanel1.add(jLabel1);
         jLabel1.setBounds(0, 0, 774, 600);
@@ -141,6 +145,10 @@ public class Hotelbooking extends javax.swing.JFrame {
     private void bookingActionPerformed(java.awt.event.ActionEvent evt) {                                        
 new totalprice().setVisible(true);        // TODO add your handling code here:
     }                                       
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+ new Hotel().setVisible(true);        // TODO add your handling code here:
+    }                                        
 
     /**
      * @param args the command line arguments
@@ -181,10 +189,8 @@ new totalprice().setVisible(true);        // TODO add your handling code here:
     private javax.swing.JButton booking;
     private javax.swing.JTextField datefrom;
     private javax.swing.JTextField dateto;
-    private javax.swing.JLabel hotelid;
-    private javax.swing.JLabel hotellocation;
-    private javax.swing.JLabel hotelnamelabel;
-    private javax.swing.JLabel hotelstars;
+    private javax.swing.JTextField id;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -197,6 +203,9 @@ new totalprice().setVisible(true);        // TODO add your handling code here:
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField location;
+    private javax.swing.JTextField name;
     private javax.swing.JTextField room;
+    private javax.swing.JTextField stars;
     // End of variables declaration                   
 }

@@ -65,7 +65,7 @@ p.setPassword(password);
         c.close();
     }
     catch (Exception e){
-        JOptionPane.showMessageDialog(null, e.toString());
+        System.out.println(e.toString());
     }
     String g = ids.get(0);
     for(int i=0; i<ids.size();i++){
@@ -103,7 +103,7 @@ p.setPassword(password);
         }
     
     catch (Exception e){
-        JOptionPane.showMessageDialog(null, e.toString());
+        System.out.println(e.toString());
     }
    }
 
@@ -123,7 +123,7 @@ p.setPassword(password);
          con.close();
     }
  catch (Exception e){
-     JOptionPane.showMessageDialog(null, e.toString());
+    System.out.println(e.toString());
  }
 }
 

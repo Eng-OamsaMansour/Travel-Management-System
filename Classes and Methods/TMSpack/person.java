@@ -31,11 +31,11 @@ public String getFname() {
 	return Fname;
 }
 
-public void set_Fname(String n) {
+public void setFname(String n) {
 	Fname=n;
 }
 
-public String get_Lname() {
+public String getLname() {
 	return Lname;
 }
 

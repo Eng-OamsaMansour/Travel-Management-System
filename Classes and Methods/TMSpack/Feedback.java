@@ -82,9 +82,26 @@ public class Feedback {
            System.out.print(ex.toString());
         }            
     }
+    public void Delete_Feedback(String feedback_ID) {
+      try {
+          OracleDataSource ods = new OracleDataSource();
+          ods.setURL("jdbc:oracle:thin:@localhost:1521:xe");
+          ods.setUser("c##TMS");
+          ods.setPassword("123456");
+          Connection con = ods.getConnection();
+          Statement stmt = con.createStatement();
+          stmt.executeQuery("DELETE FROM USER_FEEDBACK WHERE USER_ID ='" + feedback_ID + "'");
+          con.setAutoCommit(false);
+          con.commit();
+          con.close();
+      } catch (SQLException ex) {
+          Logger.getLogger(Feedback.class.getName()).log(Level.SEVERE, null, ex);
+      }
+    }
+  }
 
 
 
 
     
-}
+

@@ -23,11 +23,7 @@ public class Feedback {
         this.feedback_text = feedback_text;
       }
 
-      public static void addFeedback(String feedback_text,int feedback_ID){
-        Feedback newFeedback= new Feedback(feedback_text, feedback_ID);
-        newFeedback.setFeedbackId(feedback_ID);
-        newFeedback.setFeedbackText(feedback_text);
-      }
+     
 
 
 

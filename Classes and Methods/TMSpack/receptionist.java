@@ -20,6 +20,22 @@ import java.util.*;
 public class receptionist extends person {
 
 	private String receptionistID;
+    person p;
+
+public receptionist(){
+
+}
+
+public receptionist(String Fname,String Lname, String ID, int age, String phonenum, String username, String password){
+p.setFname(Fname);
+p.setLname(Lname);
+p.setGovID(ID);
+p.setAge(age);
+p.setPhonenum(phonenum);
+p.setUsername(username);
+p.setPassword(password);
+
+}
 
 
     public void set_receptionistID(String id) {

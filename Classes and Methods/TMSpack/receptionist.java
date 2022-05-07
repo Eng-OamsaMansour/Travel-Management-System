@@ -42,7 +42,7 @@ public class receptionist extends person {
         o.setPassword("123456");
         Connection c = o.getConnection();
         Statement s = c.createStatement();
-        ResultSet rs = s.executeQuery("select * from PERSON");
+        ResultSet rs = s.executeQuery("select * from PIRSON");
         while(rs.next()) {  
         ids.add( rs.getString(3));
         }

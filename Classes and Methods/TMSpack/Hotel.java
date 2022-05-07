@@ -1,5 +1,20 @@
 package TMSpack;
 
+import java.math.BigDecimal;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.Driver;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import oracle.jdbc.pool.OracleDataSource;
+import java.util.*;
+
 public class Hotel {
 	private String hotel_ID;
 	private int hotel_stars;
@@ -44,4 +59,61 @@ public class Hotel {
 	public void setHotel_address(Locations hotel_address) {
 		this.hotel_address = hotel_address;
 	}
+
+	public void add_hotel(Hotel H){
+
+		ArrayList<String> ids= new ArrayList<String>();
+    
+		try{
+			OracleDataSource o = new OracleDataSource();
+			o.setURL("jdbc:oracle:thin:@localhost:1521:xe");
+			o.setUser("c##TMS");
+			o.setPassword("123456");
+			Connection c = o.getConnection();
+			Statement s = c.createStatement();
+			ResultSet rs = s.executeQuery("select * from LOCATIONS");
+			while(rs.next()) {  
+			ids.add( rs.getString(1));
+			}
+			c.close();
+		}
+		catch (Exception e){
+			System.out.println( e.toString());
+		}
+		String g = ids.get(0);
+		for(int i=0; i<ids.size();i++){
+			int condition = g.compareTo(ids.get(i));
+			if (condition<0){
+				g = ids.get(i);
+			}
+		}
+		String [] spilt_id = g.split("H", 2);
+		String id_n = spilt_id[1];
+		int id_int = Integer.parseInt(id_n);
+		id_int++;
+		String id ="0";
+		id="H"+Integer.toString(id_int);
+                
+			 Driver driver = new oracle.jdbc.driver.OracleDriver();
+	   try{
+				DriverManager.registerDriver(driver);
+				String url = "jdbc:oracle:thin:@localhost:1521:xe";
+				Connection con = DriverManager.getConnection(url, "c##TMS", "123456"); 
+				/*(LOCATION_ID,REQUIRED_DECUMENTS,CONTRY, CITY)*/
+				PreparedStatement stmt = con.prepareStatement("insert into HOTEL values(?,?,?,?)");
+				stmt.setString(1,id);
+				stmt.setString(2, H.getHotel_name());
+				stmt.setInt(3,H.getHotel_stars());
+				stmt.setString(4, H.getHotel_address());
+				stmt.executeUpdate();
+				con.setAutoCommit(false);
+				con.commit();
+				con.close();
+			}
+		
+		catch (Exception e){
+			System.out.println(e.toString());
+		}
+	}
+        
 }

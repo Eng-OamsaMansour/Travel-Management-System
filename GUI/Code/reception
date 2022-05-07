@@ -19,7 +19,7 @@ public class reception extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         adduser = new javax.swing.JButton();
-        username = new javax.swing.JTextField();
+        firstname = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -40,7 +40,8 @@ public class reception extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         feedbackid = new javax.swing.JTextField();
         deletefeed = new javax.swing.JButton();
-        pinfeed = new javax.swing.JButton();
+        jLabel14 = new javax.swing.JLabel();
+        username = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -54,9 +55,9 @@ public class reception extends javax.swing.JFrame {
 
         adduser.setText("ADD USER");
         jPanel1.add(adduser);
-        adduser.setBounds(30, 360, 150, 25);
-        jPanel1.add(username);
-        username.setBounds(120, 120, 110, 22);
+        adduser.setBounds(40, 400, 150, 25);
+        jPanel1.add(firstname);
+        firstname.setBounds(110, 120, 110, 22);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setText("Add user");
@@ -69,27 +70,27 @@ public class reception extends javax.swing.JFrame {
 
         jLabel5.setText("second name");
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(20, 170, 80, 16);
+        jLabel5.setBounds(10, 170, 80, 16);
         jPanel1.add(secondname);
-        secondname.setBounds(120, 170, 110, 22);
+        secondname.setBounds(110, 170, 110, 22);
 
         jLabel6.setText("phone number");
         jPanel1.add(jLabel6);
-        jLabel6.setBounds(20, 220, 80, 16);
+        jLabel6.setBounds(10, 270, 80, 16);
         jPanel1.add(phone);
-        phone.setBounds(120, 220, 110, 22);
+        phone.setBounds(110, 270, 110, 22);
 
         jLabel7.setText("User ID");
         jPanel1.add(jLabel7);
-        jLabel7.setBounds(20, 260, 60, 16);
+        jLabel7.setBounds(20, 310, 60, 16);
         jPanel1.add(IDuser);
-        IDuser.setBounds(120, 260, 110, 22);
+        IDuser.setBounds(110, 310, 110, 22);
 
         jLabel8.setText("Age");
         jPanel1.add(jLabel8);
-        jLabel8.setBounds(20, 300, 50, 16);
+        jLabel8.setBounds(30, 350, 50, 16);
         jPanel1.add(age);
-        age.setBounds(120, 300, 110, 22);
+        age.setBounds(110, 350, 110, 22);
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel9.setText("Delete User");
@@ -137,11 +138,15 @@ public class reception extends javax.swing.JFrame {
 
         deletefeed.setText("Delete");
         jPanel1.add(deletefeed);
-        deletefeed.setBounds(540, 300, 70, 25);
+        deletefeed.setBounds(530, 280, 70, 25);
 
-        pinfeed.setText("Pin");
-        jPanel1.add(pinfeed);
-        pinfeed.setBounds(550, 270, 49, 25);
+        jLabel14.setText("User name:");
+        jPanel1.add(jLabel14);
+        jLabel14.setBounds(10, 230, 70, 16);
+
+        username.setText("username");
+        jPanel1.add(username);
+        username.setBounds(110, 220, 110, 22);
 
         jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Zahi\\Music\\6.png")); // NOI18N
         jPanel1.add(jLabel1);
@@ -167,8 +172,7 @@ new Tripreception().setVisible(true);        // TODO add your handling code here
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
-        new Firstpage().setVisible(true);
-    }
+    }                                        
 
     /**
      * @param args the command line arguments
@@ -212,12 +216,14 @@ new Tripreception().setVisible(true);        // TODO add your handling code here
     private javax.swing.JButton deletefeed;
     private javax.swing.JButton deleteuser;
     private javax.swing.JTextField feedbackid;
+    private javax.swing.JTextField firstname;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -228,9 +234,9 @@ new Tripreception().setVisible(true);        // TODO add your handling code here
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField phone;
-    private javax.swing.JButton pinfeed;
     private javax.swing.JTextField secondname;
     private javax.swing.JTextField uid;
     private javax.swing.JTextField username;
     // End of variables declaration                   
 }
+

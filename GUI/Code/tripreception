@@ -52,6 +52,7 @@ public class Tripreception extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         addlocation = new javax.swing.JButton();
         addlocationname = new javax.swing.JTextField();
+        confirmtrip = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -184,6 +185,15 @@ public class Tripreception extends javax.swing.JFrame {
         jPanel1.add(addlocationname);
         addlocationname.setBounds(410, 430, 130, 22);
 
+        confirmtrip.setText("confirm Trip");
+        confirmtrip.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmtripActionPerformed(evt);
+            }
+        });
+        jPanel1.add(confirmtrip);
+        confirmtrip.setBounds(390, 490, 120, 25);
+
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Zahi\\Music\\6.png")); // NOI18N
         jPanel1.add(jLabel1);
@@ -206,6 +216,11 @@ public class Tripreception extends javax.swing.JFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {                                         
 new reception().setVisible(true);        // TODO add your handling code here:
     }                                        
+
+    private void confirmtripActionPerformed(java.awt.event.ActionEvent evt) {                                            
+        // TODO add your handling code here:
+        new ctrip().setVisible(true);
+    }                                           
 
     /**
      * @param args the command line arguments
@@ -248,6 +263,7 @@ new reception().setVisible(true);        // TODO add your handling code here:
     private javax.swing.JButton addlocation;
     private javax.swing.JTextField addlocationname;
     private javax.swing.JButton addtrip;
+    private javax.swing.JButton confirmtrip;
     private javax.swing.JTextField date;
     private javax.swing.JButton deletehotel;
     private javax.swing.JButton deletetrip;
@@ -283,3 +299,4 @@ new reception().setVisible(true);        // TODO add your handling code here:
     private javax.swing.JTextField way;
     // End of variables declaration                   
 }
+

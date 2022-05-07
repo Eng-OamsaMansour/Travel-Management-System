@@ -38,7 +38,10 @@ public class manager extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         numofuser = new javax.swing.JTextField();
         count = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
+        receptionname = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -58,47 +61,47 @@ public class manager extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel4.setText("Reception name:");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(20, 120, 110, 20);
+        jLabel4.setBounds(10, 150, 110, 20);
 
         firstname.setText("Firstname");
         jPanel1.add(firstname);
-        firstname.setBounds(130, 120, 110, 22);
+        firstname.setBounds(120, 150, 110, 22);
 
         secondname.setText("secondname");
         jPanel1.add(secondname);
-        secondname.setBounds(240, 120, 100, 22);
+        secondname.setBounds(230, 150, 100, 22);
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel5.setText("phone number:");
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(10, 180, 120, 20);
+        jLabel5.setBounds(10, 250, 120, 20);
         jPanel1.add(phone);
-        phone.setBounds(130, 180, 110, 22);
+        phone.setBounds(120, 250, 110, 22);
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel6.setText("Age:");
         jPanel1.add(jLabel6);
-        jLabel6.setBounds(50, 230, 70, 20);
+        jLabel6.setBounds(30, 300, 70, 20);
         jPanel1.add(age);
-        age.setBounds(130, 220, 110, 22);
+        age.setBounds(120, 300, 110, 22);
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel7.setText("ID:");
         jPanel1.add(jLabel7);
-        jLabel7.setBounds(50, 280, 40, 20);
+        jLabel7.setBounds(40, 340, 40, 20);
         jPanel1.add(id);
-        id.setBounds(130, 270, 110, 22);
+        id.setBounds(120, 340, 110, 22);
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel8.setText("Password:");
         jPanel1.add(jLabel8);
-        jLabel8.setBounds(30, 320, 70, 20);
+        jLabel8.setBounds(30, 370, 70, 20);
         jPanel1.add(pass);
-        pass.setBounds(130, 320, 110, 22);
+        pass.setBounds(120, 370, 110, 22);
 
         add.setText("ADD");
         jPanel1.add(add);
-        add.setBounds(110, 370, 110, 25);
+        add.setBounds(120, 420, 110, 25);
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel9.setText("Delete reception:");
@@ -128,14 +131,21 @@ public class manager extends javax.swing.JFrame {
         jPanel1.add(count);
         count.setBounds(560, 290, 77, 25);
 
-        jButton1.setText("Firstpage");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton1);
-        jButton1.setBounds(550, 470, 170, 25);
+        jLabel12.setText("Receptionist name:");
+        jPanel1.add(jLabel12);
+        jLabel12.setBounds(10, 210, 110, 16);
+
+        receptionname.setText("name");
+        jPanel1.add(receptionname);
+        receptionname.setBounds(120, 210, 120, 22);
+
+        jLabel13.setText("The number of Employee");
+        jPanel1.add(jLabel13);
+        jLabel13.setBounds(430, 330, 150, 16);
+
+        jLabel14.setText("jLabel14");
+        jPanel1.add(jLabel14);
+        jLabel14.setBounds(440, 390, 80, 16);
 
         jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Zahi\\Music\\6.png")); // NOI18N
         jPanel1.add(jLabel1);
@@ -149,15 +159,11 @@ public class manager extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 539, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>                        
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-new Firstpage().setVisible(true);        // TODO add your handling code here:
-    }                                        
 
     /**
      * @param args the command line arguments
@@ -202,10 +208,12 @@ new Firstpage().setVisible(true);        // TODO add your handling code here:
     private javax.swing.JTextField firstname;
     private javax.swing.JTextField id;
     private javax.swing.JTextField idrec;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -218,6 +226,7 @@ new Firstpage().setVisible(true);        // TODO add your handling code here:
     private javax.swing.JTextField numofuser;
     private javax.swing.JTextField pass;
     private javax.swing.JTextField phone;
+    private javax.swing.JTextField receptionname;
     private javax.swing.JTextField secondname;
     // End of variables declaration                   
 }

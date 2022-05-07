@@ -57,9 +57,9 @@ public void add_user(user U){
         o.setPassword("123456");
         Connection c = o.getConnection();
         Statement s = c.createStatement();
-        ResultSet rs = s.executeQuery("select * from PERSON");
+        ResultSet rs = s.executeQuery("select * from PIRSON");
         while(rs.next()) {  
-        ids.add( rs.getString(1));
+        ids.add( rs.getString(3));
         }
         c.close();
     }
@@ -86,7 +86,7 @@ public void add_user(user U){
             String url = "jdbc:oracle:thin:@localhost:1521:xe";
             Connection con = DriverManager.getConnection(url, "c##TMS", "123456"); 
             /*(FIRST_NAME ,LAST_NAME ,SYS_ID ,GOV_ID ,AGE ,USER_NAME ,PASSWORD ,PHONENUMBER)*/
-            PreparedStatement stmt = con.prepareStatement("insert into PERSON values(?,?,?,?,?,?,?,?)");
+            PreparedStatement stmt = con.prepareStatement("insert into PIRSON values(?,?,?,?,?,?,?,?)");
             stmt.setString(1, U.getFname());
             stmt.setString(2, U.getLname());
             stmt.setString(3,id);
@@ -115,7 +115,7 @@ public void delete_user(String id){
 		 ods.setPassword("123456");
 		 Connection con = ods.getConnection();
 		 Statement stmt = con.createStatement();
-		 stmt.executeQuery("DELETE FROM PERSON WHERE SYS_ID ='" + id + "'");
+		 stmt.executeQuery("DELETE FROM PIRSON WHERE SYS_ID ='" + id + "'");
 		 con.setAutoCommit(false);
 		 con.commit();
 		 con.close();

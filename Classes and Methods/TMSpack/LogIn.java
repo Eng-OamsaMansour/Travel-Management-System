@@ -132,11 +132,12 @@ public void signup(person newPERSON){
             String url = "jdbc:oracle:thin:@localhost:1521:xe";
             Connection con = DriverManager.getConnection(url, "c##TMS", "123456");           
             /*(TRIP_ID, DATE_, PRICE, TRIP_LOCATION, TRIP_HOTEL, TRANSPORTATION_WAY, TRIP_PATH_DESCRIPTION, TRIP_KIND, MAX_BOOKING_NUM, CURRENT_BOOKING_NUMBER)*/          
-            PreparedStatement stmt = con.prepareStatement("insert into PIRSON values(?,?,?,?)");
-            stmt.setString(1,newPERSON.name);
-            stmt.setDate(2, newPERSON.ID);
-            stmt.setInt(3, newPERSON.age);
-            stmt.setString(4, newPERSON.phonenum);
+            PreparedStatement stmt = con.prepareStatement("insert into PIRSON values(?,?,?,?,?)");
+            stmt.setString(1,newPERSON.getFname);
+            stmt.setDate(2, newPERSON.getLname);
+            stmt.setInt(3, newPERSON.getGovID);
+            stmt.setString(4, newPERSON.getAge);
+            stmt.setString(5, newPERSON.getPhonenum);
             
             stmt.executeUpdate();
             con.setAutoCommit(false);
@@ -177,11 +178,11 @@ public boolean forget_password(String username, String gve_id,String password){
             }
             if (user_found) {
                 user_sucsses = true;
-                OracleDataSource Trip_ods = new OracleDataSource();
-                Trip_ods.setURL("jdbc:oracle:thin:@localhost:1521:xe");
-                Trip_ods.setUser("c##TMS");
-                Trip_ods.setPassword("123456");
-                Connection Tcon = Trip_ods.getConnection();
+                OracleDataSource user_ods = new OracleDataSource();
+                user_ods.setURL("jdbc:oracle:thin:@localhost:1521:xe");
+                user_ods.setUser("c##TMS");
+                user_ods.setPassword("123456");
+                Connection Tcon = user_ods.getConnection();
                 Statement Tstmt = Tcon.createStatement();
                 ResultSet id_result = Tstmt.executeQuery("select * from PIRSON where USER_NAME '\"+username +\" ;");
                 while (id_result.next()) {
@@ -214,14 +215,14 @@ public boolean forget_password(String username, String gve_id,String password){
                 Current_Password_ds.setPassword("123456");
                 Connection pass_num_con = Current_Password_ds.getConnection();
                 Statement pass_num_stmt = pass_num_con.createStatement();
-                ResultSet pass_num_result = pass_num_stmt.executeQuery("SELECT CURRENT_PASSWORD FROM TRIP WHERE PASSWORD_ = '"+password+"' ");
+                ResultSet pass_num_result = pass_num_stmt.executeQuery("SELECT CURRENT_PASSWORD FROM PIRSON WHERE PASSWORD_ = '"+password+"' ");
                 pass_num_result.next();
                  Driver pass_num_driver = new oracle.jdbc.driver.OracleDriver();
                 DriverManager.registerDriver(pass_num_driver);
                 String url1 = "jdbc:oracle:thin:@localhost:1521:xe";
                 Connection pass_num_con2 = DriverManager.getConnection(url1, "c##TMS", "123456");
                 Statement stmt1 = pass_num_con2.createStatement();
-                String strstm = "UPDATE TRIP SET CURRENT_PASSWORD_NUMBER = " + pass_num_result.getBigDecimal(1).add(BigDecimal.ONE) + " WHERE TRIP_ID = '"+trip_id+"' ";
+                String strstm = "UPDATE TRIP SET CURRENT_PASSWORD_NUMBER = " + pass_num_result.getBigDecimal(1).add(BigDecimal.ONE) + " WHERE PASSWORD = '"+password+"' ";
                 stmt1.execute(strstm);
                 pass_num_con2.setAutoCommit(false);
                 pass_num_con2.commit();
@@ -232,7 +233,6 @@ public boolean forget_password(String username, String gve_id,String password){
                 Connection con = DriverManager.getConnection(url, "c##TMS", "123456");
                 PreparedStatement stmt = con.prepareStatement("insert into PIRSON values(?)");
                 stmt.setString(1, password);
-             //   stmt.setString(2, trip_id);
                 stmt.executeQuery();
                 con.setAutoCommit(false);
                 con.commit();

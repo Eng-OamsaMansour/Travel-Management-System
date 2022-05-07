@@ -281,4 +281,20 @@ public class Trip {
         }
 
     }
+
+    public void confirm_trip(String Trip_ID) {
+        try {
+            String confirm = "confirm";
+            OracleDataSource ds = new OracleDataSource();
+            ds.setURL("jdbc:oracle:thin:@localhost:1521:xe");
+            ds.setUser("c##TMS");
+            ds.setPassword("123456");
+            Connection con = ds.getConnection();
+            Statement book_num_stmt = con.createStatement();
+            ResultSet book_num_result = book_num_stmt.executeQuery("UPDATE TRIP SET STATUS = '" + confirm + "' WHERE TRIP_ID ='" + Trip_ID + "' ");
+            book_num_result.next();
+        } catch (SQLException ex) {
+            Logger.getLogger(Trip.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

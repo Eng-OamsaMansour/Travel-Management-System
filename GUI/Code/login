@@ -1,4 +1,3 @@
-
 public class login extends javax.swing.JFrame {
 
     /**
@@ -122,13 +121,19 @@ new start().setVisible(true);        // TODO add your handling code here:
     }                                       
 
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {                                      
-       
-         //login function call if the information is true do 
-          new Firstpage().setVisible(true);
+//login function call if the information is true do 
+String n=new String(name.getText());
+if(n.equals("M"))
+   new manager().setVisible(true); 
+else if(n.equals("R"))
+new reception().setVisible(true);
+else 
+new Firstpage().setVisible(true);
     }                                     
 
     private void forgetActionPerformed(java.awt.event.ActionEvent evt) {                                       
-        
+        // TODO add your handling code here:
+        //forgetpassword functioncall
         new forgetpassword().setVisible(true); 
     }                                      
     

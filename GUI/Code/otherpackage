@@ -5,6 +5,7 @@ public class newpackage extends javax.swing.JFrame {
      */
     public newpackage() {
         initComponents();
+        filltabel();
     }
 
     /**
@@ -94,7 +95,151 @@ public class newpackage extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>                        
-
+public void filltabel()
+{ArrayList<String> id= new ArrayList<String>();
+    
+		try{
+			OracleDataSource o = new OracleDataSource();
+			o.setURL("jdbc:oracle:thin:@localhost:1521:xe");
+			o.setUser("c##TMS");
+			o.setPassword("123456");
+			Connection c = o.getConnection();
+			Statement s = c.createStatement();
+			ResultSet rs = s.executeQuery("SELECT * FROM TRIP );
+			while(rs.next()) {  
+			id.add( rs.getString(1));
+			}
+			c.close();
+		}
+		catch (Exception e){
+			System.out.println( e.toString());
+                }
+    
+    ArrayList<String> location= new ArrayList<String>();
+    
+		try{
+			OracleDataSource o = new OracleDataSource();
+			o.setURL("jdbc:oracle:thin:@localhost:1521:xe");
+			o.setUser("c##TMS");
+			o.setPassword("123456");
+			Connection c = o.getConnection();
+			Statement s = c.createStatement();
+			ResultSet rs = s.executeQuery("SELECT * FROM TRIP );
+			while(rs.next()) {  
+			location.add( rs.getString(2));
+			}
+			c.close();
+		}
+		catch (Exception e){
+			System.out.println( e.toString());
+		}
+                
+                ArrayList<String> trans= new ArrayList<String>();
+    
+		try{
+			OracleDataSource o = new OracleDataSource();
+			o.setURL("jdbc:oracle:thin:@localhost:1521:xe");
+			o.setUser("c##TMS");
+			o.setPassword("123456");
+			Connection c = o.getConnection();
+			Statement s = c.createStatement();
+			ResultSet rs = s.executeQuery("SELECT * FROM TRIP );
+			while(rs.next()) {  
+			trans.add( rs.getString(3));
+			}
+			c.close();
+		}
+		catch (Exception e){
+			System.out.println( e.toString());
+		}
+                ArrayList<String> path= new ArrayList<String>();
+    
+		try{
+			OracleDataSource o = new OracleDataSource();
+			o.setURL("jdbc:oracle:thin:@localhost:1521:xe");
+			o.setUser("c##TMS");
+			o.setPassword("123456");
+			Connection c = o.getConnection();
+			Statement s = c.createStatement();
+			ResultSet rs = s.executeQuery("SELECT * FROM TRIP );
+			while(rs.next()) {  
+			path.add( rs.getString(4));
+			}
+			c.close();
+		}
+		catch (Exception e){
+			System.out.println( e.toString());
+		}
+                
+                ArrayList<String> price= new ArrayList<String>();
+    
+		try{
+			OracleDataSource o = new OracleDataSource();
+			o.setURL("jdbc:oracle:thin:@localhost:1521:xe");
+			o.setUser("c##TMS");
+			o.setPassword("123456");
+			Connection c = o.getConnection();
+			Statement s = c.createStatement();
+			ResultSet rs = s.executeQuery("SELECT * FROM TRIP );
+			while(rs.next()) {  
+			price.add( rs.getString(5));
+			}
+			c.close();
+		}
+		catch (Exception e){
+			System.out.println( e.toString());
+		}
+                  ArrayList<String> date= new ArrayList<String>();
+    
+		try{
+			OracleDataSource o = new OracleDataSource();
+			o.setURL("jdbc:oracle:thin:@localhost:1521:xe");
+			o.setUser("c##TMS");
+			o.setPassword("123456");
+			Connection c = o.getConnection();
+			Statement s = c.createStatement();
+			ResultSet rs = s.executeQuery("SELECT * FROM TRIP );
+			while(rs.next()) {  
+			date.add( rs.getString(6));
+			}
+			c.close();
+		}
+		catch (Exception e){
+			System.out.println( e.toString());
+		}
+                ArrayList<String> hotel= new ArrayList<String>();
+    
+		try{
+			OracleDataSource o = new OracleDataSource();
+			o.setURL("jdbc:oracle:thin:@localhost:1521:xe");
+			o.setUser("c##TMS");
+			o.setPassword("123456");
+			Connection c = o.getConnection();
+			Statement s = c.createStatement();
+			ResultSet rs = s.executeQuery("SELECT * FROM TRIP );
+			while(rs.next()) {  
+			hotel.add( rs.getString(7));
+			}
+			c.close();
+		}
+		catch (Exception e){
+			System.out.println( e.toString());
+		}
+    DefaultTableModel model = new DefaultTableModel();
+    Object rowdata=new Object[7];
+    for(int i=0; i<id.size(); i++)
+    {
+    {for(int j=0; j<7; j++)
+     rowdata[i]=id.get(j);
+    rowdata[i]=location.get(j);
+    rowdata[i]=trans.get(j);
+    rowdata[i]=path.get(j);
+    rowdata[i]=price.get(j);
+    rowdata[i]=date.get(j);
+    rowdata[i]=hotel.get(j);
+}
+}
+}
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
 new Firstpage().setVisible(true);        // TODO add your handling code here:
     }                                        
@@ -149,4 +294,5 @@ new Firstpage().setVisible(true);        // TODO add your handling code here:
     private javax.swing.JTable jTable1;
     // End of variables declaration                   
 }
+
 

@@ -65,7 +65,7 @@ public void add_manager(manager M){
         c.close();
     }
     catch (Exception e){
-        JOptionPane.showMessageDialog(null, e.toString());
+        System.out.println(e.toString());
     }
     String g = ids.get(0);
     for(int i=0; i<ids.size();i++){
@@ -104,7 +104,7 @@ public void add_manager(manager M){
         }
     
     catch (Exception e){
-        JOptionPane.showMessageDialog(null, e.toString());
+        System.out.println(e.toString());
     }
 }
 
@@ -126,7 +126,7 @@ public void delete_manager(String id){
     }
 
  catch (Exception e){
-     JOptionPane.showMessageDialog(null, e.toString());
+    System.out.println(e.toString());
  }
  }
  

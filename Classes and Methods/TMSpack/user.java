@@ -123,7 +123,6 @@ public void delete_user(String id){
  catch (Exception e){
 	 
 	 System.out.println(e.toString());
-	// JOptionPane.showMessageDialog(null, e.toString());
  }
  }
  

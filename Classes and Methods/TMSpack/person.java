@@ -1,4 +1,4 @@
-package TMSpack;
+
 import javax.swing.*;
 
 
@@ -7,38 +7,23 @@ private String name;
 private String ID;
 private String age;
 private String phonenum;
-private String username;
-private String password;
-
-public person(){
-
-}
-
-
 
 public person(String name, String ID, String age, String phonenum){
-
 	this.name=name;
 	this.ID=ID;
 	this.age=age;
 	this.phonenum=phonenum;
 
 }
+/*
+public person(String NAME, String I, String AGE, String PHONENUM){
 
-public String getUsername() {
-	return username;
-}
-public void setUsername (String username) {
-	this.username = username;
+	name=NAME;
+	ID=I;
+	age=AGE;
+	phonenum=PHONENUM;
 
-}
-
-public String getPassword() {
-	return password;
-}
-public void setPassword (String password) {
-	this.password = password;
-}
+}*/
 
 public void set_name(String n) {
 	name=n;
@@ -49,7 +34,7 @@ public String get_name() {
 }
 
 public void set_ID(String id) {
-	int dig = id.length();  // to check the number of digits in ID number 
+	int dig = id.length(); // to check the number of digits in ID number 
 	if(dig==10)
 	ID=id;
 	else
@@ -61,18 +46,18 @@ public String get_ID() {
 }
 
 public void set_age(String a) {
-	
-	if (Integer.parseInt(a)>=18)	
+	int aa= 
+	if (a>=18)	
 	age=a;
 	else 
 		JOptionPane.showMessageDialog(null, " Your AGE is UNDER 18 , Please enter your information again !! ");	
 }
 
-public String get_age() {
+public int get_age() {
 	return age;
 }
 
-public void set_phonenum(String num) {
+public void set_phonenum(int num) {
 	int N = String.valueOf(num).length(); // to check the number of digits in phone number 
 	if(N==5)
 	phonenum=num;
@@ -80,7 +65,7 @@ public void set_phonenum(String num) {
 		JOptionPane.showMessageDialog(null, " Your PHONE NUMBER is less than 10 digit , Please enter your information again !! ");
 }
 
-public String get_phonenum() {
+public int get_phonenum() {
 	return phonenum;
 }
 

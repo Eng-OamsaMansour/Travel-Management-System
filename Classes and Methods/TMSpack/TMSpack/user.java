@@ -106,6 +106,27 @@ public void add_user(user U){
     }
 }
 
+public void delete_user(String id){
+        
+	try{
+		 OracleDataSource ods = new OracleDataSource();
+		 ods.setURL("jdbc:oracle:thin:@localhost:1521:xe");
+		 ods.setUser("c##TMS");
+		 ods.setPassword("123456");
+		 Connection con = ods.getConnection();
+		 Statement stmt = con.createStatement();
+		 stmt.executeQuery("DELETE FROM PERSON WHERE SYS_ID ='" + id + "'");
+		 con.setAutoCommit(false);
+		 con.commit();
+		 con.close();
+	}
+ catch (Exception e){
+	 
+	 System.out.println(e.toString());
+	// JOptionPane.showMessageDialog(null, e.toString());
+ }
+ }
+ 
 }
 
     

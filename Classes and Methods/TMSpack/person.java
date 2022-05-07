@@ -36,29 +36,46 @@ public String get_Lname() {
 	return Lname;
 }
 
-public void set_ID(String id) {
+public void setGovID(String id) {
 
 	GovID=id;
 }
 
-public String get_ID() {
+public String getGovID() {
 	return GovID;
 }
 
-public void set_age(int a) {	
+public void setAge(int a) {	
 	age=a;
 }
 
-public int get_age() {
+public int getAge() {
 	return age;
 }
 
-public void set_phonenum(String num) {
+public void setPhonenum(String num) {
 	phonenum=num;
 }
 
-public String get_phonenum() {
+public String getPhonenum() {
 	return phonenum;
+}
+
+
+public String getUsername() {
+	return username;
+}
+
+public void setUsername(String username) {
+	this.username = username;
+}
+
+public String getPassword() {
+	return password;
+}
+
+public void setPassword(String password) {
+	this.password = password;
 }
 
 

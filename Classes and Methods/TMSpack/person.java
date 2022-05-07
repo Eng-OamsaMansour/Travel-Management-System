@@ -27,6 +27,9 @@ public person(String Fname, String Lname, String GovID, int age, String phonenum
 
 }
 
+public String getFname() {
+	return Fname;
+}
 
 public void set_Fname(String n) {
 	Fname=n;
@@ -34,6 +37,10 @@ public void set_Fname(String n) {
 
 public String get_Lname() {
 	return Lname;
+}
+
+public void setLname(String Lname) {
+	this.Lname = Lname;
 }
 
 public void setGovID(String id) {

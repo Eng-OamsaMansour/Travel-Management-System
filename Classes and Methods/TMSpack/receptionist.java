@@ -91,6 +91,26 @@ public class receptionist extends person {
     }
    }
 
+   
+   public void delete_receptionist(String id){
+        
+    try{
+         OracleDataSource ods = new OracleDataSource();
+         ods.setURL("jdbc:oracle:thin:@localhost:1521:xe");
+         ods.setUser("c##TMS");
+         ods.setPassword("123456");
+         Connection con = ods.getConnection();
+         Statement stmt = con.createStatement();
+         stmt.executeQuery("DELETE FROM PIRSON WHERE SYS_ID ='" + id + "'");
+         con.setAutoCommit(false);
+         con.commit();
+         con.close();
+    }
+ catch (Exception e){
+     JOptionPane.showMessageDialog(null, e.toString());
+ }
+}
+
 
 
 

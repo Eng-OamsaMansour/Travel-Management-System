@@ -5,6 +5,7 @@ public class custmizetrip extends javax.swing.JFrame {
      */
     public custmizetrip() {
         initComponents();
+        fillcombo();
     }
 
     /**
@@ -86,7 +87,29 @@ public class custmizetrip extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>                        
-
+    public void fillcombo()
+    {
+        ArrayList<String> CONTRY= new ArrayList<String>();
+        
+            try{
+                OracleDataSource o = new OracleDataSource();
+                o.setURL("jdbc:oracle:thin:@localhost:1521:xe");
+                o.setUser("c##TMS");
+                o.setPassword("123456");
+                Connection c = o.getConnection();
+                Statement s = c.createStatement();
+                ResultSet rs = s.executeQuery("select * from LOCATIONS");
+                while(rs.next()) {  
+                //CONTRY.add( rs.getString(3));
+                            jComboBox1.addItem(rs.getString("CONTRY"));
+                }
+                c.close();
+            }
+            catch (Exception e){
+                System.out.println( e.toString());
+            }
+                    
+    }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
 new Hotelbooking().setVisible(true);        // TODO add your handling code here:
     }                                        

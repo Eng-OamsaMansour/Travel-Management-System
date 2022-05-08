@@ -141,7 +141,7 @@ public void signup(person newPERSON){
             String url = "jdbc:oracle:thin:@localhost:1521:xe";
             Connection con = DriverManager.getConnection(url, "c##TMS", "123456");           
             /*(TRIP_ID, DATE_, PRICE, TRIP_LOCATION, TRIP_HOTEL, TRANSPORTATION_WAY, TRIP_PATH_DESCRIPTION, TRIP_KIND, MAX_BOOKING_NUM, CURRENT_BOOKING_NUMBER)*/          
-            PreparedStatement stmt = con.prepareStatement("insert into PIRSON values(?,?,?,?,?)");
+            PreparedStatement stmt = con.prepareStatement("insert into PIRSON values(?,?,?,?,?,?,?)");
             stmt.setString(1,newPERSON.getFname());
             stmt.setString(2, newPERSON.getLname());
             stmt.setString(3, newPERSON.getGovID());

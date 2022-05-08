@@ -141,7 +141,7 @@ public class Trip {
         }            
     }
 
-	public boolean Reservation(String trip_id, String user_id) {
+	public static boolean Reservation(String trip_id, String user_id) {
         boolean user_sucsses = false;
         boolean trip_sucsses = false;
         boolean can_add = false;
@@ -264,7 +264,7 @@ public class Trip {
         }
     }
 
-	public void Delete_Trip(String ID) {
+	public static void Delete_Trip(String ID) {
         try {
             OracleDataSource ods = new OracleDataSource();
             ods.setURL("jdbc:oracle:thin:@localhost:1521:xe");
@@ -282,7 +282,7 @@ public class Trip {
 
     }
 
-    public void confirm_trip(String Trip_ID) {
+    public static void confirm_trip(String Trip_ID) {
         try {
             String confirm = "confirm";
             OracleDataSource ds = new OracleDataSource();

@@ -225,7 +225,7 @@ public void filltabel()
 		catch (Exception e){
 			System.out.println( e.toString());
 		}
-    DefaultTableModel model = new DefaultTableModel();
+    DefaultTableModel model = jTabel1.getModel();
     Object rowdata=new Object[7];
     for(int i=0; i<id.size(); i++)
     {

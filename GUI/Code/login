@@ -121,7 +121,7 @@ new start().setVisible(true);        // TODO add your handling code here:
     }                                       
 
     private void loginActionPerformed(java.awt.event.ActionEvent evt) {                                      
-//login function call if the information is true do 
+//login function call 
 String n=new String(name.getText());
 if(n.equals("M"))
    new manager().setVisible(true); 

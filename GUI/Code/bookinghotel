@@ -74,6 +74,11 @@ public class Hotelbooking extends javax.swing.JFrame {
         jLabel9.setBounds(10, 490, 120, 16);
 
         jButton2.setText("Confirm");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton2);
         jButton2.setBounds(490, 490, 75, 25);
 
@@ -102,6 +107,10 @@ public class Hotelbooking extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>                        
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+JOptionPane.showMessageDialog(null,"booking ","sccessful ", JOptionPane.PLAIN_MESSAGE);        // TODO add your handling code here:
+    }                                        
 
     /**
      * @param args the command line arguments

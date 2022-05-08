@@ -5,6 +5,7 @@ public class ctrip extends javax.swing.JFrame {
      */
     public ctrip() {
         initComponents();
+         filltabel();
     }
 
     /**
@@ -39,10 +40,6 @@ public class ctrip extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
@@ -67,23 +64,28 @@ public class ctrip extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(10, 50, 750, 160);
+        jScrollPane1.setBounds(10, 50, 750, 90);
 
         jLabel3.setText("Trip ID:");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(30, 240, 60, 40);
+        jLabel3.setBounds(20, 200, 60, 40);
 
         tripid.setText("ID");
         jPanel1.add(tripid);
-        tripid.setBounds(90, 250, 120, 22);
+        tripid.setBounds(90, 210, 120, 22);
 
         jButton1.setText("confirm");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton1);
-        jButton1.setBounds(220, 250, 73, 25);
+        jButton1.setBounds(230, 210, 75, 25);
 
         jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Zahi\\Music\\6.png")); // NOI18N
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(-3, -4, 774, 560);
+        jLabel1.setBounds(0, -20, 774, 560);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -98,6 +100,228 @@ public class ctrip extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>                        
+public void filltabel()
+{  
+ArrayList<String> ids= new ArrayList<String>();
+    
+		try{
+			OracleDataSource o = new OracleDataSource();
+			o.setURL("jdbc:oracle:thin:@localhost:1521:xe");
+			o.setUser("c##TMS");
+			o.setPassword("123456");
+			Connection c = o.getConnection();
+			Statement s = c.createStatement();
+			ResultSet rs = s.executeQuery("SELECT * FROM TRIP WHERE STATES = ' "unconfirmed" ' ");
+			while(rs.next()) {  
+			ids.add( rs.getString(1));
+			}
+			c.close();
+		}
+		catch (Exception e){
+			System.out.println( e.toString());
+		}
+                
+                ArrayList<String> date= new ArrayList<String>();
+    
+		try{
+			OracleDataSource o = new OracleDataSource();
+			o.setURL("jdbc:oracle:thin:@localhost:1521:xe");
+			o.setUser("c##TMS");
+			o.setPassword("123456");
+			Connection c = o.getConnection();
+			Statement s = c.createStatement();
+			ResultSet rs = s.executeQuery("SELECT * FROM TRIP WHERE STATES = ' "unconfirmed" ' ");
+			while(rs.next()) {  
+			date.add( rs.getString(2));
+			}
+			c.close();
+		}
+		catch (Exception e){
+			System.out.println( e.toString());
+		}
+                ArrayList<String> price= new ArrayList<String>();
+    
+		try{
+			OracleDataSource o = new OracleDataSource();
+			o.setURL("jdbc:oracle:thin:@localhost:1521:xe");
+			o.setUser("c##TMS");
+			o.setPassword("123456");
+			Connection c = o.getConnection();
+			Statement s = c.createStatement();
+			ResultSet rs = s.executeQuery("SELECT * FROM TRIP WHERE STATES = ' "unconfirmed" ' ");
+			while(rs.next()) {  
+			price.add( rs.getString(3));
+			}
+			c.close();
+		}
+		catch (Exception e){
+			System.out.println( e.toString());
+		}
+                
+                ArrayList<String> trip_location= new ArrayList<String>();
+    
+		try{
+			OracleDataSource o = new OracleDataSource();
+			o.setURL("jdbc:oracle:thin:@localhost:1521:xe");
+			o.setUser("c##TMS");
+			o.setPassword("123456");
+			Connection c = o.getConnection();
+			Statement s = c.createStatement();
+			ResultSet rs = s.executeQuery("SELECT * FROM TRIP WHERE STATES = ' "unconfirmed" ' ");
+			while(rs.next()) {  
+			trip_location.add( rs.getString(4));
+			}
+			c.close();
+		}
+		catch (Exception e){
+			System.out.println( e.toString());
+		}
+                
+                
+                ArrayList<String> trip_hotel= new ArrayList<String>();
+    
+		try{
+			OracleDataSource o = new OracleDataSource();
+			o.setURL("jdbc:oracle:thin:@localhost:1521:xe");
+			o.setUser("c##TMS");
+			o.setPassword("123456");
+			Connection c = o.getConnection();
+			Statement s = c.createStatement();
+			ResultSet rs = s.executeQuery("SELECT * FROM TRIP WHERE STATES = ' "unconfirmed" ' ");
+			while(rs.next()) {  
+			trip_hotel.add( rs.getString(5));
+			}
+			c.close();
+		}
+		catch (Exception e){
+			System.out.println( e.toString());
+		}
+                
+                
+                ArrayList<String> tran_way= new ArrayList<String>();
+    
+		try{
+			OracleDataSource o = new OracleDataSource();
+			o.setURL("jdbc:oracle:thin:@localhost:1521:xe");
+			o.setUser("c##TMS");
+			o.setPassword("123456");
+			Connection c = o.getConnection();
+			Statement s = c.createStatement();
+			ResultSet rs = s.executeQuery("SELECT * FROM TRIP WHERE STATES = ' "unconfirmed" ' ");
+			while(rs.next()) {  
+			tran_way.add( rs.getString(6));
+			}
+			c.close();
+		}
+		catch (Exception e){
+			System.out.println( e.toString());
+		}
+                
+                
+                ArrayList<String> trip_path= new ArrayList<String>();
+    
+		try{
+			OracleDataSource o = new OracleDataSource();
+			o.setURL("jdbc:oracle:thin:@localhost:1521:xe");
+			o.setUser("c##TMS");
+			o.setPassword("123456");
+			Connection c = o.getConnection();
+			Statement s = c.createStatement();
+			ResultSet rs = s.executeQuery("SELECT * FROM TRIP WHERE STATES = ' "unconfirmed" ' ");
+			while(rs.next()) {  
+			trip_path.add( rs.getString());
+			}
+			c.close();
+		}
+		catch (Exception e){
+			System.out.println( e.toString());
+		}
+                
+                
+                ArrayList<String> trip_kind= new ArrayList<String>();
+    
+		try{
+			OracleDataSource o = new OracleDataSource();
+			o.setURL("jdbc:oracle:thin:@localhost:1521:xe");
+			o.setUser("c##TMS");
+			o.setPassword("123456");
+			Connection c = o.getConnection();
+			Statement s = c.createStatement();
+			ResultSet rs = s.executeQuery("SELECT * FROM TRIP WHERE STATES = ' "unconfirmed" ' ");
+			while(rs.next()) {  
+			trip_kind.add( rs.getString(8));
+			}
+			c.close();
+		}
+		catch (Exception e){
+			System.out.println( e.toString());
+		}
+                
+                
+                ArrayList<String> max_booking= new ArrayList<String>();
+    
+		try{
+			OracleDataSource o = new OracleDataSource();
+			o.setURL("jdbc:oracle:thin:@localhost:1521:xe");
+			o.setUser("c##TMS");
+			o.setPassword("123456");
+			Connection c = o.getConnection();
+			Statement s = c.createStatement();
+			ResultSet rs = s.executeQuery("SELECT * FROM TRIP WHERE STATES = ' "unconfirmed" ' ");
+			while(rs.next()) {  
+			max_booking.add( rs.getString(9));
+			}
+			c.close();
+		}
+		catch (Exception e){
+			System.out.println( e.toString());
+		}
+                
+                
+                ArrayList<String> cur_booking= new ArrayList<String>();
+    
+		try{
+			OracleDataSource o = new OracleDataSource();
+			o.setURL("jdbc:oracle:thin:@localhost:1521:xe");
+			o.setUser("c##TMS");
+			o.setPassword("123456");
+			Connection c = o.getConnection();
+			Statement s = c.createStatement();
+			ResultSet rs = s.executeQuery("SELECT * FROM TRIP WHERE STATES = ' "unconfirmed" ' ");
+			while(rs.next()) {  
+			cur_booking.add( rs.getString(10));
+			}
+			c.close();
+		}
+		catch (Exception e){
+			System.out.println( e.toString());
+		}
+               
+    DefaultTableModel model = new DefaultTableModel();
+    Object rowdata=new Object[10];
+    for(int j=0; j<ids.size(); j++)
+    {
+    for(int i=0; i<10; i++)
+    {
+    rowdata[j]=ids.get(i);
+    rowdata[j]=date.get(i);
+    rowdata[j]=price.get(i);
+    rowdata[j]=trip_location.get(i);
+    rowdata[j]=trip_hotel.get(i);
+    rowdata[j]=tran_way.get(i);
+    rowdata[j]= trip_path.get(i);
+    rowdata[j]=max_booking.get(i);
+    rowdata[j]=trip_kind.get(i);
+    rowdata[j]=cur_booking.get(i);
+                
+    model.addRow(rowData);
+    }
+    }
+
+}
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+        // TODO add your handling code here:
+    }                                        
 
     /**
      * @param args the command line arguments
@@ -133,3 +357,15 @@ public class ctrip extends javax.swing.JFrame {
             }
         });
     }
+
+    // Variables declaration - do not modify                     
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTextField tripid;
+    // End of variables declaration                   
+}

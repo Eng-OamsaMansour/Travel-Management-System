@@ -132,7 +132,7 @@ public class Trip {
             stmt.setString(8, newTRIP.Trip_Kind);
             stmt.setInt(9, newTRIP.max_booking_num);
             stmt.setInt(10, newTRIP.current_booking_num);
-            stmt.executeUpdate();
+            stmt.executeUpdate(); 
             con.setAutoCommit(false);
             con.commit();
             con.close();

@@ -237,7 +237,7 @@ public void filltabel()
     rowdata[i]=price.get(j);
     rowdata[i]=date.get(j);
     rowdata[i]=hotel.get(j);
-    model.addRow(rowData);
+   
 }
 }
 }

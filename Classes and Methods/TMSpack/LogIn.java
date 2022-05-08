@@ -79,7 +79,7 @@ public String login(String user_name , String password){
     }
         catch (SQLException ex) {          
             
-            Logger.getLogger(Trip.class.getName()).log(Level.SEVERE, null, ex);          
+            Logger.getLogger(person.class.getName()).log(Level.SEVERE, null, ex);          
         }
     
               
@@ -105,7 +105,7 @@ public String login(String user_name , String password){
         }catch(SQLException x){
    x.printStackTrace();
 } catch (ClassNotFoundException ex) {
-            Logger.getLogger(p.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(person.class.getName()).log(Level.SEVERE, null, ex);
         }
 }
 
@@ -140,11 +140,15 @@ public void signup(person newPERSON){
             Connection con = DriverManager.getConnection(url, "c##TMS", "123456");           
             /*(TRIP_ID, DATE_, PRICE, TRIP_LOCATION, TRIP_HOTEL, TRANSPORTATION_WAY, TRIP_PATH_DESCRIPTION, TRIP_KIND, MAX_BOOKING_NUM, CURRENT_BOOKING_NUMBER)*/          
             PreparedStatement stmt = con.prepareStatement("insert into PIRSON values(?,?,?,?,?)");
-            stmt.setString(1,newPERSON.getFname);
-            stmt.setDate(2, newPERSON.getLname);
-            stmt.setInt(3, newPERSON.getGovID);
-            stmt.setString(4, newPERSON.getAge);
-            stmt.setString(5, newPERSON.getPhonenum);
+            stmt.setString(1,newPERSON.getFname());
+            stmt.setString(2, newPERSON.getLname());
+            stmt.setString(3, newPERSON.getGovID());
+            stmt.setInt(4, newPERSON.getAge());
+            stmt.setString(5, newPERSON.getPhonenum());
+            stmt.setString(6, newPERSON.getUsername());
+            stmt.setString(7, newPERSON.getPassword());
+
+
             
             stmt.executeUpdate();
             con.setAutoCommit(false);
@@ -250,7 +254,7 @@ public boolean forget_password(String username, String gve_id,String password){
                 con.commit();
                 con.close();
             } catch (SQLException ex) {                
-                Logger.getLogger(Trip.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(person.class.getName()).log(Level.SEVERE, null, ex);
             }
             return true;
         } else {

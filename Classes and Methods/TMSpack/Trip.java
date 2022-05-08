@@ -339,4 +339,82 @@ public class Trip {
         }
         return IDs.size();
     }
+
+    public static ArrayList<String> search(String Location_name) {
+        ArrayList<String> country_names = new ArrayList<String>();
+        ArrayList<String> Location_ids = new ArrayList<String>();
+        ArrayList<String> Trip_IDs = new ArrayList<String>();
+        try {
+            OracleDataSource ods = new OracleDataSource();
+            ods.setURL("jdbc:oracle:thin:@localhost:1521:xe");
+            ods.setUser("c##TMS");
+            ods.setPassword("123456");
+            Connection con = ods.getConnection();
+            Statement stmt = con.createStatement();
+            ResultSet result = stmt.executeQuery("select * from LOCATIONS ");
+            while (result.next()) {
+                country_names.add(result.getString(3));
+            }
+            con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(TripB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        for (int i = 0; i < country_names.size(); i++) {
+            if (country_names.get(i).contains(Location_name.toUpperCase())) {
+                try {
+                    OracleDataSource ods = new OracleDataSource();
+                    ods.setURL("jdbc:oracle:thin:@localhost:1521:xe");
+                    ods.setUser("c##TMS");
+                    ods.setPassword("123456");
+                    Connection con = ods.getConnection();
+                    Statement stmt = con.createStatement();
+                    ResultSet result = stmt.executeQuery("select LOCATION_ID from LOCATIONS where CONTRY = '" + country_names.get(i) + "'");
+                    result.next();
+                    Location_ids.add(result.getString(1));
+                    con.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(TripB.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (country_names.get(i).contains(Location_name.toLowerCase())) {
+                try {
+                    OracleDataSource ods = new OracleDataSource();
+                    ods.setURL("jdbc:oracle:thin:@localhost:1521:xe");
+                    ods.setUser("c##TMS");
+                    ods.setPassword("123456");
+                    Connection con = ods.getConnection();
+                    Statement stmt = con.createStatement();
+                    ResultSet result = stmt.executeQuery("select LOCATION_ID from LOCATIONS where CONTRY = '" + country_names.get(i) + "'");
+                    result.next();
+                    Location_ids.add(result.getString(1));
+                    con.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(TripB.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        if (Location_ids.size() > 0) {
+            for (int i = 0; i < Location_ids.size(); i++) {
+                try {
+                    OracleDataSource ods = new OracleDataSource();
+                    ods.setURL("jdbc:oracle:thin:@localhost:1521:xe");
+                    ods.setUser("c##TMS");
+                    ods.setPassword("123456");
+                    Connection con = ods.getConnection();
+                    Statement stmt = con.createStatement();
+                    String pack = "Package";
+                    ResultSet result = stmt.executeQuery("select TRIP_ID from TRIP where TRIP_LOCATION = '" + Location_ids.get(i) + "' and TRIP_KIND = '"+pack+"' ");
+                    while (result.next()) {
+                        Trip_IDs.add(result.getString(1));
+                    }
+                    con.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(TripB.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            return Trip_IDs;
+        } else {
+            return Trip_IDs;
+        }
+    }
 }

@@ -55,7 +55,13 @@ public String login(String user_name , String password){
                 Statement Tstmt = Tcon.createStatement();
                 ResultSet user_result = Tstmt.executeQuery("select * from PIRSON where USER_NAME '\"+user_name +\" ;");
                 while (user_result.next()) {
+                    USERNAMEs.add(user_result.getString(1));
+                    USERNAMEs.add(user_result.getString(2));
+                    USERNAMEs.add(user_result.getString(3));
+                    USERNAMEs.add(user_result.getString(4));
+                    USERNAMEs.add(user_result.getString(5));
                     USERNAMEs.add(user_result.getString(6));
+                    USERNAMEs.add(user_result.getString(7));
                 }
                 Tcon.close();
                 
@@ -163,7 +169,7 @@ public boolean forget_password(String username, String gve_id,String password){
             Statement stmt = con.createStatement();
              ResultSet user_result = stmt.executeQuery("select * from PIRSON");
             while (user_result.next()) {
-                user.add(user_result.getString());
+                user.add(user_result.getString(6));
             }
             con.close();
             boolean user_found = false;
@@ -184,9 +190,15 @@ public boolean forget_password(String username, String gve_id,String password){
                 user_ods.setPassword("123456");
                 Connection Tcon = user_ods.getConnection();
                 Statement Tstmt = Tcon.createStatement();
-                ResultSet id_result = Tstmt.executeQuery("select * from PIRSON where USER_NAME '\"+username +\" ;");
+                ResultSet id_result = Tstmt.executeQuery("select * from PIRSON where USER_NAME = '\"+username +\" ;");
                 while (id_result.next()) {
-                    Gve_IDs.add(id_result.getString(row));
+                    Gve_IDs.add(id_result.getString(1));
+                    Gve_IDs.add(id_result.getString(2));
+                    Gve_IDs.add(id_result.getString(3));
+                    Gve_IDs.add(id_result.getString(4));
+                    Gve_IDs.add(id_result.getString(5));
+                    Gve_IDs.add(id_result.getString(6));
+                    Gve_IDs.add(id_result.getString(7));
                 }
                 Tcon.close();
                 boolean id_found = false;

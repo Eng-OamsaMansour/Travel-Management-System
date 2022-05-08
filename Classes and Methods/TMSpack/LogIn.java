@@ -53,27 +53,28 @@ public String login(String user_name , String password){
                 Trip_ods.setPassword("123456");
                 Connection Tcon = Trip_ods.getConnection();
                 Statement Tstmt = Tcon.createStatement();
-                ResultSet user_result = Tstmt.executeQuery("select * from PIRSON where USER_NAME '\"+user_name +\" ;");
+                ResultSet user_result = Tstmt.executeQuery("select USER_NAME , PASSWORD_ from PIRSON WHERE USER_NAME = '"+ user_name +"  ;");
                 while (user_result.next()) {
-                    USERNAMEs.add(user_result.getString(1));
-                    USERNAMEs.add(user_result.getString(2));
-                    USERNAMEs.add(user_result.getString(3));
-                    USERNAMEs.add(user_result.getString(4));
-                    USERNAMEs.add(user_result.getString(5));
-                    USERNAMEs.add(user_result.getString(6));
                     USERNAMEs.add(user_result.getString(7));
                 }
                 Tcon.close();
                 
                
-                    if (user_result.equals(password)) {
+                if (user_result.equals(password)) {
                         user_sucsses = true;
-                        
-                     
+                }
+                for (int i = 0; i < USERNAMEs.size(); i++) {
+                    if(user_name.contains("U"))
+                    return "U";
+                    else if (user_name.contains("R"))
+                    return "R";
+                    else if (user_name.contains("M"))
+                    return "M";
+
+                    
                     }
-        String[] splited_id;
-            splited_id = user_result.split("U" , 2);
-        String id_num_part = splited_id[1];         
+
+            
       }
     }
         catch (SQLException ex) {          
@@ -190,15 +191,14 @@ public boolean forget_password(String username, String gve_id,String password){
                 user_ods.setPassword("123456");
                 Connection Tcon = user_ods.getConnection();
                 Statement Tstmt = Tcon.createStatement();
-                ResultSet id_result = Tstmt.executeQuery("select * from PIRSON where USER_NAME = '\"+username +\" ;");
+                ResultSet id_result = Tstmt.executeQuery("select USER_NAME, GOV_ID from PIRSON where USER_NAME = '\"+username +\" ;");
                 while (id_result.next()) {
-                    Gve_IDs.add(id_result.getString(1));
-                    Gve_IDs.add(id_result.getString(2));
-                    Gve_IDs.add(id_result.getString(3));
+                    
                     Gve_IDs.add(id_result.getString(4));
-                    Gve_IDs.add(id_result.getString(5));
                     Gve_IDs.add(id_result.getString(6));
-                    Gve_IDs.add(id_result.getString(7));
+                    
+                   
+                    
                 }
                 Tcon.close();
                 boolean id_found = false;

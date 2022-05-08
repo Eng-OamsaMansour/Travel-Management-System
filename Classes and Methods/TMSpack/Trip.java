@@ -319,4 +319,24 @@ public class Trip {
 
         return hotels_avilabile;
     }
+
+    public static int count_trip() {
+        ArrayList<String> IDs = new ArrayList<String>();
+        try {
+            OracleDataSource ds = new OracleDataSource();
+            ds.setURL("jdbc:oracle:thin:@localhost:1521:xe");
+            ds.setUser("c##TMS");
+            ds.setPassword("123456");
+            Connection con = ds.getConnection();
+            Statement stmt = con.createStatement();
+            ResultSet result = stmt.executeQuery("SELECT * FROM TRIP");
+            while (result.next()) {
+                IDs.add(result.getString(1));
+            }
+            con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(TripB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return IDs.size();
+    }
 }

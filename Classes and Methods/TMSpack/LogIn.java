@@ -8,6 +8,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import oracle.jdbc.pool.OracleDataSource;
 
@@ -53,26 +55,33 @@ public String login(String user_name , String password){
                 Trip_ods.setPassword("123456");
                 Connection Tcon = Trip_ods.getConnection();
                 Statement Tstmt = Tcon.createStatement();
-                ResultSet user_result = Tstmt.executeQuery("select * from PIRSON where USER_NAME '\"+user_name +\" ;");
+                ResultSet user_result = Tstmt.executeQuery("select USER_NAME , PASSWORD_ from PIRSON WHERE USER_NAME = '"+ user_name +"  ;");
                 while (user_result.next()) {
-                    USERNAMEs.add(user_result.getString(6));
+                    USERNAMEs.add(user_result.getString(7));
                 }
                 Tcon.close();
                 
                
-                    if (user_result.equals(password)) {
+                if (user_result.equals(password)) {
                         user_sucsses = true;
-                        
-                     
+                }
+                for (int i = 0; i < USERNAMEs.size(); i++) {
+                    if(user_name.contains("U"))
+                    return "U";
+                    else if (user_name.contains("R"))
+                    return "R";
+                    else if (user_name.contains("M"))
+                    return "M";
+
+                    
                     }
-        String[] splited_id;
-            splited_id = user_result.split("U" , 2);
-        String id_num_part = splited_id[1];         
+
+            
       }
     }
         catch (SQLException ex) {          
             
-            Logger.getLogger(Trip.class.getName()).log(Level.SEVERE, null, ex);          
+            Logger.getLogger(person.class.getName()).log(Level.SEVERE, null, ex);          
         }
     
               
@@ -98,7 +107,7 @@ public String login(String user_name , String password){
         }catch(SQLException x){
    x.printStackTrace();
 } catch (ClassNotFoundException ex) {
-            Logger.getLogger(p.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(person.class.getName()).log(Level.SEVERE, null, ex);
         }
 }
 
@@ -132,12 +141,16 @@ public void signup(person newPERSON){
             String url = "jdbc:oracle:thin:@localhost:1521:xe";
             Connection con = DriverManager.getConnection(url, "c##TMS", "123456");           
             /*(TRIP_ID, DATE_, PRICE, TRIP_LOCATION, TRIP_HOTEL, TRANSPORTATION_WAY, TRIP_PATH_DESCRIPTION, TRIP_KIND, MAX_BOOKING_NUM, CURRENT_BOOKING_NUMBER)*/          
-            PreparedStatement stmt = con.prepareStatement("insert into PIRSON values(?,?,?,?,?)");
-            stmt.setString(1,newPERSON.getFname);
-            stmt.setDate(2, newPERSON.getLname);
-            stmt.setInt(3, newPERSON.getGovID);
-            stmt.setString(4, newPERSON.getAge);
-            stmt.setString(5, newPERSON.getPhonenum);
+            PreparedStatement stmt = con.prepareStatement("insert into PIRSON values(?,?,?,?,?,?,?)");
+            stmt.setString(1,newPERSON.getFname());
+            stmt.setString(2, newPERSON.getLname());
+            stmt.setString(3, newPERSON.getGovID());
+            stmt.setInt(4, newPERSON.getAge());
+            stmt.setString(5, newPERSON.getPhonenum());
+            stmt.setString(6, newPERSON.getUsername());
+            stmt.setString(7, newPERSON.getPassword());
+
+
             
             stmt.executeUpdate();
             con.setAutoCommit(false);
@@ -163,7 +176,7 @@ public boolean forget_password(String username, String gve_id,String password){
             Statement stmt = con.createStatement();
              ResultSet user_result = stmt.executeQuery("select * from PIRSON");
             while (user_result.next()) {
-                user.add(user_result.getString());
+                user.add(user_result.getString(6));
             }
             con.close();
             boolean user_found = false;
@@ -184,9 +197,14 @@ public boolean forget_password(String username, String gve_id,String password){
                 user_ods.setPassword("123456");
                 Connection Tcon = user_ods.getConnection();
                 Statement Tstmt = Tcon.createStatement();
-                ResultSet id_result = Tstmt.executeQuery("select * from PIRSON where USER_NAME '\"+username +\" ;");
+                ResultSet id_result = Tstmt.executeQuery("select USER_NAME, GOV_ID from PIRSON where USER_NAME = '\"+username +\" ;");
                 while (id_result.next()) {
-                    Gve_IDs.add(id_result.getString(row));
+                    
+                    Gve_IDs.add(id_result.getString(4));
+                    Gve_IDs.add(id_result.getString(6));
+                    
+                   
+                    
                 }
                 Tcon.close();
                 boolean id_found = false;
@@ -238,7 +256,7 @@ public boolean forget_password(String username, String gve_id,String password){
                 con.commit();
                 con.close();
             } catch (SQLException ex) {                
-                Logger.getLogger(Trip.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(person.class.getName()).log(Level.SEVERE, null, ex);
             }
             return true;
         } else {

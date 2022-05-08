@@ -132,7 +132,7 @@ public class Trip {
             stmt.setString(8, newTRIP.Trip_Kind);
             stmt.setInt(9, newTRIP.max_booking_num);
             stmt.setInt(10, newTRIP.current_booking_num);
-            stmt.executeUpdate();
+            stmt.executeUpdate(); 
             con.setAutoCommit(false);
             con.commit();
             con.close();
@@ -141,7 +141,7 @@ public class Trip {
         }            
     }
 
-	public boolean Reservation(String trip_id, String user_id) {
+	public static boolean Reservation(String trip_id, String user_id) {
         boolean user_sucsses = false;
         boolean trip_sucsses = false;
         boolean can_add = false;
@@ -264,7 +264,7 @@ public class Trip {
         }
     }
 
-	public void Delete_Trip(String ID) {
+	public static void Delete_Trip(String ID) {
         try {
             OracleDataSource ods = new OracleDataSource();
             ods.setURL("jdbc:oracle:thin:@localhost:1521:xe");
@@ -282,7 +282,7 @@ public class Trip {
 
     }
 
-    public void confirm_trip(String Trip_ID) {
+    public static void confirm_trip(String Trip_ID) {
         try {
             String confirm = "confirm";
             OracleDataSource ds = new OracleDataSource();
@@ -295,6 +295,126 @@ public class Trip {
             book_num_result.next();
         } catch (SQLException ex) {
             Logger.getLogger(Trip.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public static ArrayList<String> castumize_part1(String location) {
+        ArrayList<String> hotels_avilabile = new ArrayList<String>();
+        try {
+            OracleDataSource ds = new OracleDataSource();
+            ds.setURL("jdbc:oracle:thin:@localhost:1521:xe");
+            ds.setUser("c##TMS");
+            ds.setPassword("123456");
+            Connection con = ds.getConnection();
+            Statement stmt = con.createStatement();
+            ResultSet result = stmt.executeQuery("SELECT HOTEL_ID FROM HOTELS_LOCATION WHERE LOCATION_ID = '" + location + "'");
+            while (result.next()) {
+                hotels_avilabile.add(result.getString(1));
+            }
+            con.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(TripB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return hotels_avilabile;
+    }
+
+    public static int count_trip() {
+        ArrayList<String> IDs = new ArrayList<String>();
+        try {
+            OracleDataSource ds = new OracleDataSource();
+            ds.setURL("jdbc:oracle:thin:@localhost:1521:xe");
+            ds.setUser("c##TMS");
+            ds.setPassword("123456");
+            Connection con = ds.getConnection();
+            Statement stmt = con.createStatement();
+            ResultSet result = stmt.executeQuery("SELECT * FROM TRIP");
+            while (result.next()) {
+                IDs.add(result.getString(1));
+            }
+            con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(TripB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return IDs.size();
+    }
+
+    public static ArrayList<String> search(String Location_name) {
+        ArrayList<String> country_names = new ArrayList<String>();
+        ArrayList<String> Location_ids = new ArrayList<String>();
+        ArrayList<String> Trip_IDs = new ArrayList<String>();
+        try {
+            OracleDataSource ods = new OracleDataSource();
+            ods.setURL("jdbc:oracle:thin:@localhost:1521:xe");
+            ods.setUser("c##TMS");
+            ods.setPassword("123456");
+            Connection con = ods.getConnection();
+            Statement stmt = con.createStatement();
+            ResultSet result = stmt.executeQuery("select * from LOCATIONS ");
+            while (result.next()) {
+                country_names.add(result.getString(3));
+            }
+            con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(TripB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        for (int i = 0; i < country_names.size(); i++) {
+            if (country_names.get(i).contains(Location_name.toUpperCase())) {
+                try {
+                    OracleDataSource ods = new OracleDataSource();
+                    ods.setURL("jdbc:oracle:thin:@localhost:1521:xe");
+                    ods.setUser("c##TMS");
+                    ods.setPassword("123456");
+                    Connection con = ods.getConnection();
+                    Statement stmt = con.createStatement();
+                    ResultSet result = stmt.executeQuery("select LOCATION_ID from LOCATIONS where CONTRY = '" + country_names.get(i) + "'");
+                    result.next();
+                    Location_ids.add(result.getString(1));
+                    con.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(TripB.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (country_names.get(i).contains(Location_name.toLowerCase())) {
+                try {
+                    OracleDataSource ods = new OracleDataSource();
+                    ods.setURL("jdbc:oracle:thin:@localhost:1521:xe");
+                    ods.setUser("c##TMS");
+                    ods.setPassword("123456");
+                    Connection con = ods.getConnection();
+                    Statement stmt = con.createStatement();
+                    ResultSet result = stmt.executeQuery("select LOCATION_ID from LOCATIONS where CONTRY = '" + country_names.get(i) + "'");
+                    result.next();
+                    Location_ids.add(result.getString(1));
+                    con.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(TripB.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        if (Location_ids.size() > 0) {
+            for (int i = 0; i < Location_ids.size(); i++) {
+                try {
+                    OracleDataSource ods = new OracleDataSource();
+                    ods.setURL("jdbc:oracle:thin:@localhost:1521:xe");
+                    ods.setUser("c##TMS");
+                    ods.setPassword("123456");
+                    Connection con = ods.getConnection();
+                    Statement stmt = con.createStatement();
+                    String pack = "Package";
+                    ResultSet result = stmt.executeQuery("select TRIP_ID from TRIP where TRIP_LOCATION = '" + Location_ids.get(i) + "' and TRIP_KIND = '"+pack+"' ");
+                    while (result.next()) {
+                        Trip_IDs.add(result.getString(1));
+                    }
+                    con.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(TripB.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            return Trip_IDs;
+        } else {
+            return Trip_IDs;
         }
     }
 }

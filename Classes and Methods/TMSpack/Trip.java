@@ -297,4 +297,26 @@ public class Trip {
             Logger.getLogger(Trip.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    public static ArrayList<String> castumize_part1(String location) {
+        ArrayList<String> hotels_avilabile = new ArrayList<String>();
+        try {
+            OracleDataSource ds = new OracleDataSource();
+            ds.setURL("jdbc:oracle:thin:@localhost:1521:xe");
+            ds.setUser("c##TMS");
+            ds.setPassword("123456");
+            Connection con = ds.getConnection();
+            Statement stmt = con.createStatement();
+            ResultSet result = stmt.executeQuery("SELECT HOTEL_ID FROM HOTELS_LOCATION WHERE LOCATION_ID = '" + location + "'");
+            while (result.next()) {
+                hotels_avilabile.add(result.getString(1));
+            }
+            con.close();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(TripB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return hotels_avilabile;
+    }
 }

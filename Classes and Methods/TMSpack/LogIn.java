@@ -39,7 +39,7 @@ public static String login(String user_name, String password) {
         }
         con.close();
     } catch (SQLException ex) {
-        Logger.getLogger(LogInB.class.getName()).log(Level.SEVERE, null, ex);
+        Logger.getLogger(LogIn.class.getName()).log(Level.SEVERE, null, ex);
     }
     for (int i = 0; i < username.size(); i++) {
         if (username.get(i).equals(user_name)) {
@@ -61,7 +61,7 @@ public static String login(String user_name, String password) {
             base_password = result.getString(1);
             con.close();
         } catch (SQLException ex) {
-            Logger.getLogger(LogInB.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LogIn.class.getName()).log(Level.SEVERE, null, ex);
         }
         if(base_password.equals(password)){
             if(user_name.contains("U")){
@@ -81,94 +81,6 @@ public static String login(String user_name, String password) {
         return "wronguser";
     }
 
-}
-    boolean user_sucsses = false;
-    ArrayList<String> USERNAMEs = new ArrayList<String>();
-    try {
-            OracleDataSource ods = new OracleDataSource();
-            ods.setURL("jdbc:oracle:thin:@localhost:1521:xe");
-            ods.setUser("c##TMS");
-            ods.setPassword("123456");
-            Connection con = ods.getConnection();
-            Statement stmt = con.createStatement();
-            
-            ResultSet result = stmt.executeQuery("select * from PIRSON");
-             while (result.next()) {
-                USERNAMEs.add(result.getString(6));
-            }
-            con.close();
-       boolean user_found = false;
-       for (int i = 0; i < USERNAMEs.size(); i++) {
-
-                if (USERNAMEs.get(i).equals(user_name)) {
-
-                    user_sucsses = true;
-                    user_found = true;
-                    break;
-                }
-            }
-      if (user_found) {
-                user_sucsses = true;
-                OracleDataSource Trip_ods = new OracleDataSource();
-                Trip_ods.setURL("jdbc:oracle:thin:@localhost:1521:xe");
-                Trip_ods.setUser("c##TMS");
-                Trip_ods.setPassword("123456");
-                Connection Tcon = Trip_ods.getConnection();
-                Statement Tstmt = Tcon.createStatement();
-                ResultSet user_result = Tstmt.executeQuery("select USER_NAME , PASSWORD_ from PIRSON WHERE USER_NAME = '"+ user_name +"  ;");
-                while (user_result.next()) {
-                    USERNAMEs.add(user_result.getString(7));
-                }
-                Tcon.close();
-                
-               
-                if (user_result.equals(password)) {
-                        user_sucsses = true;
-                }
-                for (int i = 0; i < USERNAMEs.size(); i++) {
-                    if(user_name.contains("U"))
-                    return "U";
-                    else if (user_name.contains("R"))
-                    return "R";
-                    else if (user_name.contains("M"))
-                    return "M";
-
-                    
-                    }
-
-            
-      }
-    }
-        catch (SQLException ex) {          
-            
-            Logger.getLogger(person.class.getName()).log(Level.SEVERE, null, ex);          
-        }
-    
-              
-              
-            
-       /* }catch(SQLException x){
-   x.printStackTrace();
-}       catch (ClassNotFoundException ex) {
-            Logger.getLogger(p.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
-            
-         
-    
-    Driver driver = new oracle.jdbc.driver.OracleDriver();
-    
-    try{
-        
-        DriverManager.registerDriver(driver);
-            String url = "jdbc:oracle:thin:@localhost:1521:xe";
-            Connection con = DriverManager.getConnection(url, "c##TMS", "123456");
- 
-    
-        }catch(SQLException x){
-   x.printStackTrace();
-} catch (ClassNotFoundException ex) {
-            Logger.getLogger(person.class.getName()).log(Level.SEVERE, null, ex);
-        }
 }
 
 public void signup(person newPERSON){
@@ -199,8 +111,7 @@ public void signup(person newPERSON){
         try {
             DriverManager.registerDriver(driver);
             String url = "jdbc:oracle:thin:@localhost:1521:xe";
-            Connection con = DriverManager.getConnection(url, "c##TMS", "123456");           
-            /*(TRIP_ID, DATE_, PRICE, TRIP_LOCATION, TRIP_HOTEL, TRANSPORTATION_WAY, TRIP_PATH_DESCRIPTION, TRIP_KIND, MAX_BOOKING_NUM, CURRENT_BOOKING_NUMBER)*/          
+            Connection con = DriverManager.getConnection(url, "c##TMS", "123456");                   
             PreparedStatement stmt = con.prepareStatement("insert into PIRSON values(?,?,?,?,?,?,?)");
             stmt.setString(1,newPERSON.getFname());
             stmt.setString(2, newPERSON.getLname());

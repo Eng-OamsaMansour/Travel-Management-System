@@ -242,11 +242,6 @@ public boolean forget_password(String username, String gve_id,String password){
     
 }
 
-public void logout(){
-    
-    
-    
-}
 
 
 

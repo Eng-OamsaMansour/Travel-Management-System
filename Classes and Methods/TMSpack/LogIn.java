@@ -85,6 +85,7 @@ public static String login(String user_name, String password) {
 
 public void signup(person newPERSON){
    ArrayList<String> IDs = new ArrayList<String>();
+   String id ="0";
         try {
             OracleDataSource ods = new OracleDataSource();
             ods.setURL("jdbc:oracle:thin:@localhost:1521:xe");
@@ -94,7 +95,7 @@ public void signup(person newPERSON){
             Statement stmt = con.createStatement();
             ResultSet result = stmt.executeQuery("select * from PIRSON");
             while (result.next()) {
-                IDs.add(result.getString(1));
+                IDs.add(result.getString(3));
             }
             con.close();
         } catch (Exception e) {
@@ -106,6 +107,13 @@ public void signup(person newPERSON){
             if (condition < 0) {
                 graterid = IDs.get(i);
             }
+            String [] spilt_id = graterid .split("U", 2);
+            String id_n = spilt_id[1];
+            int id_int = Integer.parseInt(id_n);
+            id_int++;
+            
+            id="U"+Integer.toString(id_int);
+            
         }
          Driver driver = new oracle.jdbc.driver.OracleDriver();
         try {
@@ -115,11 +123,12 @@ public void signup(person newPERSON){
             PreparedStatement stmt = con.prepareStatement("insert into PIRSON values(?,?,?,?,?,?,?)");
             stmt.setString(1,newPERSON.getFname());
             stmt.setString(2, newPERSON.getLname());
-            stmt.setString(3, newPERSON.getGovID());
-            stmt.setInt(4, newPERSON.getAge());
-            stmt.setString(5, newPERSON.getPhonenum());
-            stmt.setString(6, newPERSON.getUsername());
-            stmt.setString(7, newPERSON.getPassword());
+            stmt.setString(3,id);
+            stmt.setString(4, newPERSON.getGovID());
+            stmt.setInt(5, newPERSON.getAge());
+            stmt.setString(6, newPERSON.getPhonenum());
+            stmt.setString(7, newPERSON.getUsername());
+            stmt.setString(8, newPERSON.getPassword());
 
 
             

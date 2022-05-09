@@ -115,5 +115,81 @@ public class Hotel {
 			System.out.println(e.toString());
 		}
 	}
+
+	        
+public void delete_hotel(String id){
+    
+	try{
+		   OracleDataSource ods = new OracleDataSource();
+		   ods.setURL("jdbc:oracle:thin:@localhost:1521:xe");
+		   ods.setUser("c##TMS");
+		   ods.setPassword("123456");
+		   Connection conn = ods.getConnection();
+		   Statement stm = conn.createStatement();
+		   stm.executeQuery("DELETE FROM TRIP WHERE HOTEL_ID ='" + id + "'");
+		   conn.setAutoCommit(false);
+		   conn.commit();
+		   conn.close();
+	  }
+   catch (Exception e){
+	   
+	   System.out.println(e.toString());
+   }
+	
+	
+	  try{
+		   OracleDataSource od = new OracleDataSource();
+		   od.setURL("jdbc:oracle:thin:@localhost:1521:xe");
+		   od.setUser("c##TMS");
+		   od.setPassword("123456");
+		   Connection con = od.getConnection();
+		   Statement stmt = con.createStatement();
+		   stmt.executeQuery("DELETE FROM ROOM_KINDS WHERE HOTEL_ID ='" + id + "'");
+		   con.setAutoCommit(false);
+		   con.commit();
+		   con.close();
+	  }
+   catch (Exception e){
+	   
+	   System.out.println(e.toString());
+   }
+	  
+	  
+	  try{
+		   OracleDataSource od = new OracleDataSource();
+		   od.setURL("jdbc:oracle:thin:@localhost:1521:xe");
+		   od.setUser("c##TMS");
+		   od.setPassword("123456");
+		   Connection con = od.getConnection();
+		   Statement stmt = con.createStatement();
+		   stmt.executeQuery("DELETE FROM HOTELS_LOCATION WHERE HOTEL_ID ='" + id + "'");
+		   con.setAutoCommit(false);
+		   con.commit();
+		   con.close();
+	  }
+   catch (Exception e){
+	   
+	   System.out.println(e.toString());
+   }
+	  
+	  
+	  try{
+		   OracleDataSource od = new OracleDataSource();
+		   od.setURL("jdbc:oracle:thin:@localhost:1521:xe");
+		   od.setUser("c##TMS");
+		   od.setPassword("123456");
+		   Connection con = od.getConnection();
+		   Statement stmt = con.createStatement();
+		   stmt.executeQuery("DELETE FROM  HOTEL WHERE HOTEL_ID ='" + id + "'");
+		   con.setAutoCommit(false);
+		   con.commit();
+		   con.close();
+	  }
+   catch (Exception e){
+	   
+	   System.out.println(e.toString());
+   }
+	 
+   }
         
 }

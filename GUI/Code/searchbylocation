@@ -1,5 +1,15 @@
 package TMSpack;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+import oracle.jdbc.pool.OracleDataSource;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -44,6 +54,7 @@ public class searchbylocation extends javax.swing.JFrame {
         hotel_id = new javax.swing.JTextField();
         show_hotel = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        searchby = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -76,7 +87,7 @@ public class searchbylocation extends javax.swing.JFrame {
 
         jLabel7.setText("Result:");
         jPanel1.add(jLabel7);
-        jLabel7.setBounds(30, 30, 120, 16);
+        jLabel7.setBounds(30, 50, 120, 16);
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -108,7 +119,7 @@ public class searchbylocation extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jTable2);
 
         jPanel1.add(jScrollPane2);
-        jScrollPane2.setBounds(30, 60, 700, 110);
+        jScrollPane2.setBounds(30, 80, 700, 110);
 
         show_result.setText("Show Result");
         show_result.addActionListener(new java.awt.event.ActionListener() {
@@ -117,41 +128,43 @@ public class searchbylocation extends javax.swing.JFrame {
             }
         });
         jPanel1.add(show_result);
-        show_result.setBounds(550, 180, 180, 22);
+        show_result.setBounds(570, 20, 180, 22);
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
         jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(30, 350, 360, 86);
+        jScrollPane1.setBounds(30, 370, 360, 86);
 
         show_loation.setText("Show Location Details");
         jPanel1.add(show_loation);
-        show_loation.setBounds(230, 290, 160, 22);
+        show_loation.setBounds(230, 310, 160, 22);
 
         location_id.setToolTipText("Enter Location Number");
         jPanel1.add(location_id);
-        location_id.setBounds(30, 290, 190, 22);
+        location_id.setBounds(30, 310, 190, 22);
 
         jTextArea2.setColumns(20);
         jTextArea2.setRows(5);
         jScrollPane3.setViewportView(jTextArea2);
 
         jPanel1.add(jScrollPane3);
-        jScrollPane3.setBounds(30, 190, 360, 86);
+        jScrollPane3.setBounds(30, 210, 360, 86);
 
         hotel_id.setToolTipText("Enter Hotel Number");
         jPanel1.add(hotel_id);
-        hotel_id.setBounds(30, 450, 190, 22);
+        hotel_id.setBounds(30, 470, 190, 22);
 
         show_hotel.setText("Show Hotel Details");
         jPanel1.add(show_hotel);
-        show_hotel.setBounds(230, 450, 160, 22);
+        show_hotel.setBounds(230, 470, 160, 22);
 
         jLabel2.setText("Trip Number");
         jPanel1.add(jLabel2);
         jLabel2.setBounds(40, 520, 80, 16);
+        jPanel1.add(searchby);
+        searchby.setBounds(31, 20, 510, 22);
         jPanel1.add(jLabel1);
         jLabel1.setBounds(0, 0, 770, 600);
 
@@ -170,13 +183,13 @@ public class searchbylocation extends javax.swing.JFrame {
     }// </editor-fold>                        
 
     private void bookingActionPerformed(java.awt.event.ActionEvent evt) {                                        
-        // TODO add your handling code here:
-        
+
 
     }                                       
 
     private void show_resultActionPerformed(java.awt.event.ActionEvent evt) {                                            
         // TODO add your handling code here:
+       
     }                                           
 
     private void buttonActionPerformed(java.awt.event.ActionEvent evt) {                                       
@@ -236,6 +249,7 @@ public class searchbylocation extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextField location_id;
+    private javax.swing.JTextField searchby;
     private javax.swing.JButton show_hotel;
     private javax.swing.JButton show_loation;
     private javax.swing.JButton show_result;

@@ -19,9 +19,9 @@ public class Hotel {
 	private String hotel_ID;
 	private int hotel_stars;
 	private String hotel_name;
-	private Locations hotel_address;
+	private String hotel_address;
 	
-	public Hotel (String hotel_ID,int hotel_stars,String hotel_name,Locations hotel_address) {
+	public Hotel (String hotel_ID,int hotel_stars,String hotel_name,String hotel_address) {
 		this.hotel_ID = hotel_ID;
 		this.hotel_stars = hotel_stars;
 		this.hotel_name = hotel_name;
@@ -52,11 +52,11 @@ public class Hotel {
 		this.hotel_name = hotel_name;
 	}
 
-	public Locations getHotel_address() {
+	public String getHotel_address() {
 		return hotel_address;
 	}
 
-	public void setHotel_address(Locations hotel_address) {
+	public void setHotel_address(String hotel_address) {
 		this.hotel_address = hotel_address;
 	}
 

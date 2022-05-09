@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import oracle.jdbc.pool.OracleDataSource;
 
@@ -91,11 +92,7 @@ public class searchbylocation extends javax.swing.JFrame {
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Trip ID", "Date", "Price", "Trip Hotel", "transportation way"
@@ -189,7 +186,50 @@ public class searchbylocation extends javax.swing.JFrame {
 
     private void show_resultActionPerformed(java.awt.event.ActionEvent evt) {                                            
         // TODO add your handling code here:
-       
+        if (this.searchby.getText().equals("")) {
+            JOptionPane.showMessageDialog(rootPane, "Please Enter Country name");
+        } else {
+            ArrayList<String> result = TripB.search(this.searchby.getText());
+            if (result.size() != 0) {
+                
+                ArrayList<String> Trip_id = new ArrayList<String>();
+                ArrayList<String> date = new ArrayList<String>();
+                ArrayList<String> price = new ArrayList<String>();
+                ArrayList<String> Trip_hotel = new ArrayList<String>();
+                ArrayList<String> Transportaion_way = new ArrayList<String>();
+
+                for (int i = 0; i < result.size(); i++) {
+                    try {
+                        OracleDataSource ods = new OracleDataSource();
+                        ods.setURL("jdbc:oracle:thin:@localhost:1521:xe");
+                        ods.setUser("c##TMS");
+                        ods.setPassword("123456");
+                        Connection con = ods.getConnection();
+                        Statement stmt = con.createStatement();
+                        ResultSet result_base = stmt.executeQuery("select * from TRIP where TRIP_ID = '" + result.get(i) + "'");
+                        while (result_base.next()) {
+                            Trip_id.add(result_base.getString(1));
+                            date.add(result_base.getDate(2).toString());
+                            price.add(String.valueOf(result_base.getInt(3)));
+                            Trip_hotel.add(result_base.getString(4));
+                            Transportaion_way.add(result_base.getString(5));
+                        }
+                        con.close();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Firstpage.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+                
+                DefaultTableModel model = (DefaultTableModel) this.jTable2.getModel();
+                model.setRowCount(0);
+                for (int i = 0; i < result.size(); i++) {
+                    String[] row = {Trip_id.get(i), date.get(i), price.get(i), price.get(i), Trip_hotel.get(i), Transportaion_way.get(i)};
+                    model.insertRow(i, row);
+                }
+            }else{
+                JOptionPane.showMessageDialog(rootPane, "No Result Found");
+            }
+        }
     }                                           
 
     private void buttonActionPerformed(java.awt.event.ActionEvent evt) {                                       

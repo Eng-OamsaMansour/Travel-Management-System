@@ -21,7 +21,67 @@ public LogIn(){
     p=new person();
 
 }
-public String login(String user_name , String password){
+public static String login(String user_name, String password) {
+    ArrayList<String> username = new ArrayList<String>();
+    boolean user_found = false;
+    int user_index = -1;
+    String base_password = "-1000";
+    try {
+        OracleDataSource user_ods = new OracleDataSource();
+        user_ods.setURL("jdbc:oracle:thin:@localhost:1521:xe");
+        user_ods.setUser("c##TMS");
+        user_ods.setPassword("123456");
+        Connection con = user_ods.getConnection();
+        Statement stmt = con.createStatement();
+        ResultSet result = stmt.executeQuery("select * from PIRSON");
+        while (result.next()) {
+            username.add(result.getString(6));
+        }
+        con.close();
+    } catch (SQLException ex) {
+        Logger.getLogger(LogInB.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    for (int i = 0; i < username.size(); i++) {
+        if (username.get(i).equals(user_name)) {
+            user_found = true;
+            user_index = i;
+            break;
+        }
+    }
+    if (user_found) {
+        try {
+            OracleDataSource user_ods = new OracleDataSource();
+            user_ods.setURL("jdbc:oracle:thin:@localhost:1521:xe");
+            user_ods.setUser("c##TMS");
+            user_ods.setPassword("123456");
+            Connection con = user_ods.getConnection();
+            Statement stmt = con.createStatement();
+            ResultSet result = stmt.executeQuery("select PASSWORD_ from PIRSON where USER_NAME = '"+user_name+"'");
+            result.next();
+            base_password = result.getString(1);
+            con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(LogInB.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if(base_password.equals(password)){
+            if(user_name.contains("U")){
+                return "user";
+            }else{
+                if(user_name.contains("R")){
+                    return "Resip";
+                }else{
+                    return "manager";
+                }
+            }
+        }else{
+            return "wrongpass";
+        }
+
+    }else{
+        return "wronguser";
+    }
+
+}
     boolean user_sucsses = false;
     ArrayList<String> USERNAMEs = new ArrayList<String>();
     try {
